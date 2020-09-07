@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="lpopopo">
+
+
+
+    <meta name="description" content="A boy of no one">
+
+
+
+<title>Linux常识 | no one</title>
+
+
+
+    <link rel="icon" href="/m7.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">lpopopo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">lpopopo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Linux常识</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">lpopopo</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">二月 26, 2020&nbsp;&nbsp;21:11:21</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Linux/">Linux</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Linux文件权与目录管理"><a href="#Linux文件权与目录管理" class="headerlink" title="Linux文件权与目录管理"></a><strong>Linux文件权与目录管理</strong></h2><h3 id="改变文件的属性和权限"><a href="#改变文件的属性和权限" class="headerlink" title="改变文件的属性和权限"></a>改变文件的属性和权限</h3><ul>
+<li>chgrp 改变文件所属的用户组</li>
+<li>chown 改变文件所有者</li>
+<li>chmod 改变文件的权限</li>
+</ul>
+<p><strong>chgrp:</strong>  是change group的简称 ， 使用方法直接chgrp即可 ，但值得注意的是，所改变的组名必须是在etc/group中的文件才行，不然会报错误。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chgrp [-R] dirname&#x2F;filename  ...</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>chown:</strong> 是change owner的简称 ,注意的是用户必须是系统的账号，也就是只有在etc/passwd<br>  这个文件中有记录的用户名称才能改变.<br> -R 可以改变连目录下的所有子目录或文件同时更改文件所有者</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chown [-R]  账号名称   文件名称</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="chmod"><a href="#chmod" class="headerlink" title="chmod:"></a><strong>chmod:</strong></h4><p>  Linux的基本权限有9个，分别是ower ， group ， others 三种身份各有自己的read  ， write ， execute 权限,</p>
+<p><strong>数字类型改变权限</strong></p>
+<p>个权限所对应的数字为:</p>
+<p>r : 4                                 代表read</p>
+<p>w : 2                                代表write</p>
+<p>x : 1                                  代表execute</p>
+<p>每种身份各自的三种权限是相互累加的， 使用是相应的三种身份所对应的权限值应当给出来。对应下面的xyz，</p>
+<p>-R也是递归到目录下面的所有的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chmod [-R]   xyz  文件名&#x2F;目录</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>符号类型改变</strong></p>
+<p>u (代表user)</p>
+<p>g (代表group)                                   +  (加入）                                                   r</p>
+<p>o(代表others)                                   -  (除去)                                                      w                                             文件或目录</p>
+<p>a(代表all)                                           = (设置)                                                        x                                                     </p>
+<p>栗子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chmod  u&#x3D;rwx , go&#x3D;rx     xxx</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="文件种类和扩展名"><a href="#文件种类和扩展名" class="headerlink" title="文件种类和扩展名"></a><strong>文件种类和扩展名</strong></h3><h4 id="文件种类"><a href="#文件种类" class="headerlink" title="文件种类:"></a>文件种类:</h4><ul>
+<li><p>普通文件：一般为 -</p>
+</li>
+<li><p>纯文本文件： 这是Linux系统中最常见的一种文件。之所以为纯文本文件是因为内容为我们可以直接读取的数据。可以直接执行cat 命令就可以看到其中的内容。</p>
+</li>
+<li><p>二进制文件：</p>
+</li>
+<li><p>数据格式文件：那些特殊格式的文件就可以被称为数据文件。</p>
+<p>栗子：当我们进行系统登录的时候，都会讲登录的信息记录在var/log/wtmp那个文件内，这是一格data file。一般使用last进行读取 ， 用cat 会出现乱码，因为他是属于特殊的格式的文件</p>
+</li>
+</ul>
+<ul>
+<li><p>目录：第一个的属性为[d]</p>
+</li>
+<li><p>连接文件：类似与windows里面的快捷方式</p>
+</li>
+<li><p>设备与设备文件：主要分为 块设备文件  和字符设备文件  。   设备文件主要是系统外设和存储的文件。</p>
+<p>块设备文件主要是一些存储数据，提供系统随机访问的接口设备。例如：硬盘 ， 软盘等（属性为[b])</p>
+<p>字符设备文件主要是提供一些串行端口的接口。例如，键盘，鼠标等。     (属性为[c])</p>
+</li>
+<li><p>套接字:  被称为数据接口文件，通常用为网络上的数据连接。属性为[s]</p>
+</li>
+<li><p>管道(FIFO , pipe)</p>
+<p>FIFO也是一个特殊类型的文件，主要用于当多个程序同是访问一个文件的错误情况。  属性为[p]</p>
+</li>
+</ul>
+<h4 id="文件目录分为四种类型："><a href="#文件目录分为四种类型：" class="headerlink" title="文件目录分为四种类型："></a>文件目录分为四种类型：</h4><p>1.可分享 ： 可以分享给其他系统挂载的目录， 包括执行文件和用户数据等</p>
+<p>2.不可分享 ： 自己机器上运行的设备文件或者与程序有关的socket文件</p>
+<p>3.可变:经常改变的文件 ， 如登录数据等</p>
+<p>4.不变：数据不会相应的变动的文件</p>
+<p>/（root根目录) , 与开机系统有关</p>
+<p>根目录是十分的关键的 ，首先他与系统的启动，还原 ， 系统回复有着关系。在用户的角度看待根目录，那就是相当于系统的管理员。但是站在文件的角度进行看待则是一切目录的衍生。根据FHS规则，root目录不用太大因为太大放的东西多了后，结构就会变得很复杂。这样不仅性能较好，而且在文件系统中不会容易出错。</p>
+<p>/usr（Unix software resource)  : 与软件的安装执行有关</p>
+<p>/var   与系统的运行过程有关</p>
+<p>/etc  配置文件</p>
+<p>/bin  重要执行文件</p>
+<p>/dev   所需的设备文件</p>
+<p>/lib    执行文件所需的函数库和内核所需的模块</p>
+<p>/sbin  需要的系统执行文件</p>
+<h2 id="文件与目录管理"><a href="#文件与目录管理" class="headerlink" title="文件与目录管理"></a>文件与目录管理</h2><h4 id="文件目录相关操作"><a href="#文件目录相关操作" class="headerlink" title="文件目录相关操作"></a>文件目录相关操作</h4><p>比较特殊的目录:</p>
+<p>.           代表当前的目录</p>
+<p>..          代表上一级的目录</p>
+<p><code>-</code>          代表前一个工作目录(返回上一次操作的目录)</p>
+<p><code>~</code>           代表当前用户的主文件夹</p>
+<p><code>~account</code>                 代表用户为account的主文件夹</p>
+<p>常见的处理目录命令:</p>
+<p>cd          切换目录</p>
+<p>pwd      显示当前的目录(路径)</p>
+<p>mkdir    新建一个目录</p>
+<p>rmdir     删除一个空的目录</p>
+<p><code>~</code>          代表当前用户的主文件夹</p>
+<h4 id="文件与目录管理-1"><a href="#文件与目录管理-1" class="headerlink" title="文件与目录管理"></a>文件与目录管理</h4><p>查看文件目录： ls</p>
+<p>参数讲解:</p>
+<p>-a             全部的文件,连同隐藏文件一列出</p>
+<p>-A              列出全部文件 ， 包括隐藏文件 ，但不包括 .  与  ..这两个文件</p>
+<p>-d             仅列出文件目录本身,而不是列出目录内的文件数据</p>
+<p>-f               直接列出结果,而不进行排序(ls 默认会以文件名排序)</p>
+<p>-F             根据文件，目录等信息给予附加数据结构,例如:  *:代表可执行文件     /：代表目录   =:代表socket文件    |:代表FIFO文件</p>
+<p>-h             将文件以易读的方式列出</p>
+<p>-i               列出inode号码 ，</p>
+<p>-l               列出长数据串，包括文件的属性以及权限等数据。</p>
+<p>-n             列出UID与GID ， 而非用户与用户组的名称</p>
+<p>-r              将排序结果反向输出</p>
+<p>-R              连同子目录一同输出，</p>
+<p>-S              以文件容量排序，</p>
+<p>-t               以时间排序</p>
+<p>–color=never        不要依据文件特性给予颜色显示</p>
+<p>–color=always       显示颜色</p>
+<p>–color=auto            让系统自行依据设置来判断是否给予颜色</p>
+<p>–full-time                 以完整时间模式输出</p>
+<p>–time={atime ， ctime}    输出访问时间或改变权限属性时间，而非内容改变时间</p>
+<h4 id="复制，删除与移动"><a href="#复制，删除与移动" class="headerlink" title="复制，删除与移动"></a>复制，删除与移动</h4><h5 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h5><p>复制文件(copy)   cp除了可以用来复制之外，还可以用来创建文件连接方式 , 对比两文件新旧予更新,以及复制整个目录。</p>
+<p>复制文件时特别要注意的是权限问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-a                  相当于-pdr的意思</span><br><span class="line">-d                  若源文件为连接文件的属性，则复制连接文件得属性，而非文件本身</span><br><span class="line">-f                   为强制复制的意思，若目标文件已经存在且无法开启，则删除在尝试一次</span><br><span class="line">-i                    若目标文件存在在覆盖是会先询问操作的进行。</span><br><span class="line">-l                    进行硬连接的连接文件进行创建，而非复制文件本身。</span><br><span class="line">-p                  连同文件属性一同复制，而非默认复制</span><br><span class="line">-r                   递归持续复制，用于目录的复制</span><br><span class="line">-s                   复制成为符号链接文件，即快捷方式文件</span><br><span class="line">-u                  若destination比source旧才更新destination</span><br></pre></td></tr></table></figure>
+
+<h5 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h5><p>移动文件，还可以使用来进行文件的重命名     在Linux中可以使用remove来进行大量的重命名操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-i                      若亩的地已有同名文件，则先询问是否覆盖旧档</span><br></pre></td></tr></table></figure>
+
+<h5 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h5><p> 删除文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-f                  就是force的意思,忽略文件的不存在</span><br><span class="line">-i                  互动模式,在删除前会询问用户是否操作</span><br><span class="line">-r                  递归删除，最常用的删除了</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="取得路径的文件名和目录名称"><a href="#取得路径的文件名和目录名称" class="headerlink" title="取得路径的文件名和目录名称"></a>取得路径的文件名和目录名称</h4><p>basename</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls@ls-X542URR:~$ basename ~</span><br><span class="line">ls</span><br><span class="line">&#x2F;&#x2F;取得的就是文件名</span><br></pre></td></tr></table></figure>
+
+
+
+<p>dirname </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls@ls-X542URR:~$ dirname ~</span><br><span class="line">&#x2F;home</span><br><span class="line">&#x2F;&#x2F;取得的就是文件的路径</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="文件内容查阅"><a href="#文件内容查阅" class="headerlink" title="文件内容查阅"></a>文件内容查阅</h3><h4 id="cat-："><a href="#cat-：" class="headerlink" title="cat  ："></a><code>cat</code>  ：</h4><p>由第一行开始显示文件内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;可以使用重定向符号(&gt; 以及&gt;&gt;)进行相关的文件写入 ,  &gt;  是对文件进行覆盖写入，而　&gt;&gt; 是对文件进行追加写入</span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ cat cat.js </span><br><span class="line">console.log(&#39;cat&#39;)</span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ cat cp.js </span><br><span class="line">const a &#x3D; 1</span><br><span class="line">console.log(1)</span><br><span class="line"></span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ cat cp.js &gt;&gt; cat.js ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ cat cat.js </span><br><span class="line">console.log(&#39;cat&#39;)</span><br><span class="line">const a &#x3D; 1</span><br><span class="line">console.log(1)</span><br><span class="line"></span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ cat cp.js  &gt; cat.js ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ cat cat.js </span><br><span class="line">const a &#x3D; 1</span><br><span class="line">console.log(1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="tac-："><a href="#tac-：" class="headerlink" title="tac  ："></a><code>tac</code>  ：</h4><p>从最后一行开始显示</p>
+<h4 id="nl-："><a href="#nl-：" class="headerlink" title="nl   ："></a><code>nl</code>   ：</h4><p>显示的时候，顺便输出行号</p>
+<h4 id="more-："><a href="#more-：" class="headerlink" title="more  ："></a><code>more</code>  ：</h4><p>一页一页的显示文件内容</p>
+<h4 id="less"><a href="#less" class="headerlink" title="less     :"></a><code>less</code>     :</h4><p>与more类似，但是比more更好的是，他可以往前翻</p>
+<h4 id="head"><a href="#head" class="headerlink" title="head  :"></a><code>head</code>  :</h4><p>只看头几行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head  [-n]  filename</span><br></pre></td></tr></table></figure>
+
+<h4 id="tail-："><a href="#tail-：" class="headerlink" title="tail     ："></a><code>tail</code>     ：</h4><p>只看结尾几行</p>
+<ul>
+<li><code>-n</code> : 只显示后面的<code>n</code>行</li>
+<li><code>-f</code> :  动态显示，常用于跟踪消息文件.(当文件增长或者继续显示新的内容)</li>
+</ul>
+<h4 id="od-："><a href="#od-：" class="headerlink" title="od       ："></a><code>od</code>       ：</h4><p>以二进制的方式读取文件的内容</p>
+<h4 id="touch"><a href="#touch" class="headerlink" title="touch :"></a><code>touch</code> :</h4><p>修改文件时间和创建新文件 : 如果在文件存在的情况下，就改变访问时间，否则就创建文件</p>
+<p> 参数：</p>
+<ul>
+<li><code>-a</code> 改变文件的读取时间记录</li>
+<li><code>-m</code> 改变文件的修改时间目录</li>
+<li><code>-c</code>如果目录不存在，不会创建新的文件</li>
+<li><code>--no-create</code>　同<code>-c</code></li>
+<li><code>-r</code> 使用参考文件的时间记录，与<code>---file</code>的效果一样</li>
+<li><code>-d</code> 设定时间与日期，可以使用不同的格式</li>
+<li><code>-t</code>设定文件的时间记录</li>
+<li><code>--help</code>列出指令格式</li>
+<li><code>--version</code>列出版本信息</li>
+</ul>
+<h3 id="一般文件有三个描述的时间"><a href="#一般文件有三个描述的时间" class="headerlink" title="一般文件有三个描述的时间"></a>一般文件有三个描述的时间</h3><h4 id="mtime："><a href="#mtime：" class="headerlink" title="mtime："></a>mtime：</h4><p>当该文件的”内容数据”更改时，就是更新此时间。内容数据指的是文件的内容，而并非文件的属性与权限</p>
+<h4 id="ctime"><a href="#ctime" class="headerlink" title="ctime:"></a>ctime:</h4><p>当文件的”状态”改变时，就会更新这个时间。比如文件的属性和权限改变就会改变这个时间。我们在进行复制时，复制了所有的属性，也没有办法复制这个属性。</p>
+<h4 id="atime"><a href="#atime" class="headerlink" title="atime:"></a>atime:</h4><p>当”该文件的内容被取用的时候”，就会更新这个读取时间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-a                           仅仅修改访问的时间</span><br><span class="line">-c                           仅修改文件的时间，若文件不存在就不创建新文件</span><br><span class="line">-d                          后面可以接欲修改的日期而不用目前的日期，也可以使用--date&#x3D;&quot;&quot;</span><br><span class="line">-m                        仅修改mtime</span><br><span class="line">-t                           后面可以接欲修改的时间而不用当前的时间，格式为[YYMMDDHHmm]</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看时间的相关操作"><a href="#查看时间的相关操作" class="headerlink" title="查看时间的相关操作"></a>查看时间的相关操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;ls查看</span><br><span class="line"> ls -l --time&#x3D;atime cat.js </span><br><span class="line"> &#x2F;&#x2F;-rw-r--r-- 1 ls ls 28 3月   4 16:42 cat.js</span><br><span class="line"> </span><br><span class="line"> &#x2F;&#x2F;第二种方法stat</span><br><span class="line"> ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ stat cat.js </span><br><span class="line">  文件：cat.js</span><br><span class="line">  大小：28        	块：8          IO 块：4096   普通文件</span><br><span class="line">设备：805h&#x2F;2053d	Inode：1706410     硬链接：1</span><br><span class="line">权限：(0644&#x2F;-rw-r--r--)  Uid：( 1000&#x2F;      ls)   Gid：( 1000&#x2F;      ls)</span><br><span class="line">最近访问：2020-03-04 16:42:54.830632583 +0800</span><br><span class="line">最近更改：2020-03-04 16:42:49.346691732 +0800</span><br><span class="line">最近改动：2020-03-04 16:42:49.346691732 +0800</span><br><span class="line">创建时间：-</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="文件与目录的默认权限与隐藏权限"><a href="#文件与目录的默认权限与隐藏权限" class="headerlink" title="文件与目录的默认权限与隐藏权限"></a>文件与目录的默认权限与隐藏权限</h3><p>文件除了有（r ， w ， x）等属性，目录（d），文件(-)等属性外，还有设置系统的隐藏属性，这部分可使用chattr来设置，而用lsattr来查看，最重要的是属性就是设置其不可修改的特性。让文件的所有者都无法对文件进行修改</p>
+<h4 id="文件默认权限-umask"><a href="#文件默认权限-umask" class="headerlink" title="文件默认权限:umask"></a><strong>文件默认权限:umask</strong></h4><p>umask 指定的就是 “目前用户在新建文件或目录时候的权限默认值”</p>
+<p>查看umask的方法一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;class&#x2F;studyMore&#x2F;Linux$ umask</span><br><span class="line">0022</span><br><span class="line"></span><br><span class="line">#其中第一位为特殊权限 ， 后三位则与之相关 ，后三位与前面的ls  -al的用户对应。</span><br><span class="line">#umask的用法则是在所有权限中进行想用的减去</span><br><span class="line"></span><br><span class="line">#设置方法</span><br><span class="line">$ umask    002</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;class&#x2F;studyMore&#x2F;Linux$ umask -S</span><br><span class="line">u&#x3D;rwx,g&#x3D;rx,o&#x3D;rx</span><br></pre></td></tr></table></figure>
+
+<p>一般root的umask 为022 ， 一般用户的umask即为002</p>
+<h4 id="文件隐藏属性-chattr-lsattr"><a href="#文件隐藏属性-chattr-lsattr" class="headerlink" title="文件隐藏属性  chattr    lsattr"></a><strong>文件隐藏属性  chattr    lsattr</strong></h4><p>首先强调，下面的命令只能在Ext2/Ext3的文件系统上面生效</p>
+<ul>
+<li><p>chattr  (设置文件的隐藏属性)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chattr [+-&#x3D;]  [ASacdistu]    文件名或者目录</span><br></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<p><code>+</code>           :  增加某一个特殊参数 ， 其他原本参数则不动</p>
+<p><code>-</code>            : 删除某一个特殊的参数 ，其他的原本存在的参数则不动</p>
+<p><code>=</code>           : 仅有后面接的参数</p>
+</li>
+</ul>
+<p>  A            : 若你访问此文件是时，他的访问时间为atime 将不会被修改,可避免I/O较慢的机器过度访问磁盘</p>
+<p>  S            : 一般文件是异步写入文件的，加上此属性时，你进行任何的修改都会变成同步写入。</p>
+<p>  a            : 此属性设置后只能增加数据，二不能进行删除数据，但是只有root才能设置此属性.</p>
+<p>  c            : 这个属性设置之后，将自动将此文件进行压缩，在读取的时候进行自动解压，在存储时，将会先进行压缩才会进行存储。</p>
+<p>  d           ：当dump程序被执行后，设置此属性将可使该文件(或目录)不会被dump备份。</p>
+<p>  i             : 他可以是一个文件”不能删除 ， 不能改名 ， 设置连接也无法写入或添加数据”。对于系统的安全性有很大的帮助，只有root才有权限能够进行设置此属性。</p>
+<p>  s            : 如果这个文件被删除 ，那么他将完全从这个硬盘空间中删除。</p>
+<p>  u           ：与s相反，文件被删除后，但他任然存在在磁盘空间中，可以是用来找回该文件。</p>
+<ul>
+<li><p>lsattr</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># lsattr  [-adR]   文件名或者目录</span><br><span class="line"></span><br><span class="line">-a   ： 将隐藏文件的属性也输出</span><br><span class="line">-d   :   如果是目录的目录的话，仅列出目录本身的属性</span><br><span class="line">-R   ： 连同子目录一同列出来</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="文件的特殊权限"><a href="#文件的特殊权限" class="headerlink" title="文件的特殊权限"></a>文件的特殊权限</h3><p>文件的权限除了(r , w , x)外还有其他的特殊权限</p>
+<ul>
+<li>SetUID                                   当s这个标志出现在文件所有者的x权限上时，被称为SetUID</li>
+</ul>
+<p>​          简称SUID ， 在描述中的缩写为s，他的基本的限制与功能如下:</p>
+<p>​          SUID仅对二进制程序有效，</p>
+<p>​         执行者需要对该文件有x权限</p>
+<p>​         此权限仅在执行该程序过程中有效</p>
+<p>​         执行者将具有该程序所有者权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ls@ls-X542URR:&#x2F;root$ ls  -al   &#x2F;usr&#x2F;bin&#x2F;passwd</span><br><span class="line">-rwsr-xr-x 1 root root 59640 3月  23  2019 &#x2F;usr&#x2F;bin&#x2F;passwd</span><br><span class="line"></span><br><span class="line">#对于账号密码储存在这个地方 ， 而只有root才有权限对其进行读写。因为修改密码的passwd有s权限 ， 所以当用户进行</span><br><span class="line">#执行程序的时候就会获得root的权限进行操作，前提是该用户本身对该程序有可执行的权限</span><br><span class="line">#相当于通过可执行程序暂时提高自己的用户等级</span><br></pre></td></tr></table></figure>
+
+<p>此外，SUID仅用在二进制的文件上，不能够用在shell  script上面，因为shell script本身就是将二进制文件进行调用执行的。所以SUID的权限部分还是要看shell script调用进来的程序的设置，而不是shell script本身。当然SUID本身对于目录的设定也是无效的。</p>
+<ul>
+<li>Set GID                            当s这个标志出现在用户组的x的权限上时，被称为Set GID</li>
+</ul>
+<p>​        简称SGID，与SUID不同的是，SGID可以针对文件或目录来进行设置。针对文件而言，有以下的作用</p>
+<p>​        对二进制程序有用，</p>
+<p>​       程序执行这对于该程序而言，需具有x权限</p>
+<p>​       执行者在执行过程中将会获得程序用户组的支持</p>
+<p>​      与Set UID作用类似</p>
+<p>​      当用于目录上而言时,具有以下的功能，</p>
+<p>​       用户若对于此目录具有r或x的权限时，才可以进入</p>
+<p>​       用户在此目录下的有效的用户组，将会变成木块录下的用户组。</p>
+<p>​       若用户组在此目录下具有w的权限，则在该目录下创建的新目录或文件的所属组与该目录的所属组一致。</p>
+<p>​       SGID对于项目开发非常重要，因为他涉及到的是用户组的权限问题。</p>
+<ul>
+<li>Sticky Bit </li>
+</ul>
+<p>​          简称SBIT  ， 此特殊权限仅仅对于目录有效，而对于文件无效。以下为对目录的功能。</p>
+<p>​          简单描述其功能 ， 当一个用户对于一个目录具有用户组或其他人的身份时，并且该用户对于此目录有w的权限，则就意味着该用户可以对此目录下的文件进行删除，重命名 等工作 ， 如果给该用户加上了SBIT权限后，则该用户在目录下新建的文件或就仅仅只能由他自己或者root用户才能进行删除、移动，等操作。而且他无法删除别人的文件。</p>
+<p><strong>设置SUID SGID SBIT权限</strong></p>
+<p>SUID             4</p>
+<p>SGID             2</p>
+<p>SBIT              1</p>
+<p>才设置时在相应的三个数字之前加上一个对应的数字。例如:</p>
+<p>-rwsr-xr-x      —–&gt;                   相对于原来的rwx而言 , 原来的为755 ， 这里设置的是 SUID，所以在755前面加上4，即4755</p>
+<p>​        </p>
+<p>file : 查看文件类型</p>
+<h3 id="命令与文件的查询"><a href="#命令与文件的查询" class="headerlink" title="命令与文件的查询"></a>命令与文件的查询</h3><h4 id="which-寻找”执行文件”"><a href="#which-寻找”执行文件”" class="headerlink" title="which :  (寻找”执行文件”)"></a>which :  (寻找”执行文件”)</h4><p> 脚本文件名查询</p>
+<p>这个命令是根据PATH这个环境变量所规范的路径去查询”执行文件”的文件名。所以重点在于找出文件名。且后面接的是完整的文件名，若加上 -a参数就会找出所有的同名的文件 ， 而并非第一个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;class&#x2F;JS$ which ls</span><br><span class="line">&#x2F;bin&#x2F;ls</span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;class&#x2F;JS$ which node</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;bin&#x2F;node</span><br><span class="line"></span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;class&#x2F;JS$ which -a node</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;bin&#x2F;node</span><br><span class="line">&#x2F;usr&#x2F;bin&#x2F;node</span><br></pre></td></tr></table></figure>
+
+<h4 id="文件名的查找"><a href="#文件名的查找" class="headerlink" title="文件名的查找"></a>文件名的查找</h4><h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p>是直接在硬盘中进行查找 ， 他会以递归的形式找到当前目录下指定的文件或目录，如果是当前目录下的目录，则会递归进行全部的查看</p>
+<p>在Linux系统中，会将所有的文件记录在一个数据库文件里面，而where和locate就会以这个数据库文件为准进行相应的查找,但是数据库的默认跟新时间为一天一次 ， 所以有可能你使用命令的时候，你可能依旧能找到你删除的文件，而找不到你已经添加的文件，所以可以使用updatedb进行相应的数据库文件进行更新</p>
+<p> 通常find 不很常见 ，因为速度慢!通常我们都是使用whereis 或者是 locate 来检查</p>
+<h5 id="where（寻找特定的文件）"><a href="#where（寻找特定的文件）" class="headerlink" title="where（寻找特定的文件）"></a>where（寻找特定的文件）</h5><p>​          -b            只找二进制的文件</p>
+<p>​          -m           只找在说明文件manual下的文件</p>
+<p>​          -s             只找source源文件</p>
+<p>​          -u           查找不在上述三个选项中的特殊文件</p>
+<h5 id="locate-："><a href="#locate-：" class="headerlink" title="locate ："></a>locate ：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-i                      ：忽略大小写的差异</span><br><span class="line">-r                      :  后面可以接正则表达式的显示方式</span><br></pre></td></tr></table></figure>
+
+<p>find : find可以查找与时间相关的内容 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-mtime n  :  n为数字 ， 意义为在n天之前的&quot;一天之内&quot;被更改的文件</span><br><span class="line">-mtime  +n   ： 在n天之后被更改的文件 </span><br><span class="line">-mtime   -n    ： 在n天之前被更改的文件</span><br></pre></td></tr></table></figure>
+
+<p>与用户或用户组相关的参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-uid   n              n为数字 ， 代表用户的ID ， 即UID </span><br><span class="line">-gid    n</span><br><span class="line">-user name</span><br><span class="line">-group   name</span><br><span class="line">-nouser           :寻找文件的所有者不存在的&#x2F;etc&#x2F;passwd中的人</span><br><span class="line">-nogroup       : </span><br><span class="line">-perm              :用于找出特殊权限的文件</span><br></pre></td></tr></table></figure>
+
+<p>###　文件压缩</p>
+<p><code>Linux</code>中的所有压缩都是无损压缩</p>
+<h4 id="tar"><a href="#tar" class="headerlink" title="tar"></a><code>tar</code></h4><p>可以压缩称不同的文件形式</p>
+<h5 id="必选命令"><a href="#必选命令" class="headerlink" title="必选命令"></a>必选命令</h5><ul>
+<li><code>-c</code> ：　建立压缩档案，</li>
+<li><code>-x</code> :       解压</li>
+<li><code>-t</code>：　查看内容</li>
+<li><code>-r</code>：　向压缩归档文件末尾追加文件</li>
+<li><code>-u</code>：　更新原压缩包中的文件</li>
+<li><code>-f</code>：　指定备份文件</li>
+</ul>
+<h5 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h5><ul>
+<li><code>-z</code>：　有<code>gzip</code>属性的</li>
+<li><code>-j</code>：　有<code>bz2</code>属性的</li>
+<li><code>-Z</code>：　有<code>compress</code>属性的</li>
+<li><code>-v</code>：　显示所有进程</li>
+<li><code>-O</code>：　将文件解开到标准输出</li>
+</ul>
+<h5 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf z.txt.tar z.txt</span><br></pre></td></tr></table></figure>
+
+<p>解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xf z.txt.tar</span><br></pre></td></tr></table></figure>
+
+<h4 id="gzip-—-gt-gunzip"><a href="#gzip-—-gt-gunzip" class="headerlink" title="gzip —&gt; gunzip"></a><code>gzip</code> —&gt; <code>gunzip</code></h4><p><code>gzip</code></p>
+<ul>
+<li><code>-c</code>：　将输出写到标准输出</li>
+<li><code>-d</code>：　将压缩文件解压</li>
+<li><code>-l</code>：　对每个压缩文件显示：<ul>
+<li>压缩文件的大小，</li>
+<li>未压缩文件的大小</li>
+<li>压缩比</li>
+<li>未压缩文件的名字</li>
+</ul>
+</li>
+<li><code>-r</code>：　递归压缩或解压</li>
+<li><code>-t</code>：　测试，检查压缩文件是否完整</li>
+<li><code>-v</code>：　对每一个压缩文件和解压文件，显示文件名和压缩比</li>
+<li><code>-num</code>： 用指定的数字<code>num</code>调解压缩的速度<ul>
+<li><code>-1或--fast</code>：表示最快压缩方法(低压缩比)</li>
+<li><code>-9或--best</code>：　表示最慢压缩方法(高压缩比),　</li>
+</ul>
+</li>
+</ul>
+<p><code>gunzip</code>:解压文件</p>
+<p>事实上<code>gunzip</code>就是<code>gzip</code>的硬链接</p>
+<ul>
+<li><code>-a</code>：　使用<code>ASCII</code>文字模式</li>
+<li><code>-c</code>：　把解压后的文件输出到标准输出设备</li>
+<li><code>-f</code>：　强行解开压缩文件，</li>
+<li><code>-l</code>：　列出压缩文件的相关信息</li>
+<li><code>-L</code>：　显示版本和版权信息</li>
+</ul>
+<p>压缩</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gzip ...</span><br></pre></td></tr></table></figure>
+
+<p>解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gunzip  ....</span><br><span class="line"></span><br><span class="line">gzip -d  ....</span><br></pre></td></tr></table></figure>
+
+<h4 id="zip—-gt-unzip"><a href="#zip—-gt-unzip" class="headerlink" title="zip—&gt;unzip"></a><code>zip</code>—&gt;<code>unzip</code></h4><p><code>zip</code>:</p>
+<ul>
+<li><code>-A</code>：　调增可执行的自动解压文件</li>
+<li><code>-b</code> ：　指定暂时存放文件的目录</li>
+<li><code>-c</code>：　替每个被压缩的文件加上注释</li>
+<li><code>-d</code>：   从压缩文件内删除指定的文件</li>
+<li><code>-D</code>：   压缩文件内不建立目录名称。</li>
+<li><code>-f</code>:        此参数的效果和指定”-u”参数类似，但不仅更新既有文件，如果某些文件原本不存在于压缩文件内，使用本参数会一并将其加入压缩文件中</li>
+<li><code>-F</code>：　   尝试修复已损坏的压缩文件</li>
+<li><code>-g</code>：　   将文件压缩后附加在既有的压缩文件之后，而非另行建立新的压缩文件</li>
+<li><code>-i</code>：　&lt;范本样式&gt;   只压缩符合条件的文件</li>
+<li><code>-j</code>          只保存文件名称及其内容，而不存放任何目录名称</li>
+<li><code>-J</code>          删除压缩文件前面不必要的数据</li>
+<li><code>-J</code>          删除压缩文件前面不必要的数据</li>
+<li><code>-k</code>          使用MS-DOS兼容格式的文件名称</li>
+<li><code>-l</code>：　   压缩文件时，把LF字符置换成LF+CR字符</li>
+<li><code>-ll</code>：　   压缩文件时，把LF+CR字符置换成LF字符</li>
+<li><code>-L</code>：　   显示版权信息</li>
+</ul>
+<h3 id="echo-printer-打印"><a href="#echo-printer-打印" class="headerlink" title="echo: :printer: 打印"></a><code>echo</code>: :printer: 打印</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo  &quot;contenct&quot;  &gt;  file   &#x2F;&#x2F;可以将内容输入到相应的文件中，上面讲到重定向　&gt; 与　&gt;&gt; 的区别</span><br></pre></td></tr></table></figure>
+
+<p><code>/dev/null</code>:空文件，俗称”<code>Linux</code>黑洞”,即使输入再多的内容也不会填满</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;清空文件内容</span><br><span class="line">cat &#x2F;dev&#x2F;null &gt; FileName</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建文件链接ln"><a href="#创建文件链接ln" class="headerlink" title="创建文件链接ln"></a>创建文件链接<code>ln</code></h3><ul>
+<li><code>-f</code>:连接时先将与连接同样的文件名的文件删除</li>
+<li><code>-d</code>: 允许系统管理者硬链接自己的目录</li>
+<li><code>-i</code>: 在删除与连接相同文件名的文件时先进行询问</li>
+<li><code>-n</code>:在进行软连接时，将<code>dist</code>视为一般的文件</li>
+<li><code>-s</code>:进行软连接</li>
+<li><code>-v</code>:在连接之前显示其文件名</li>
+<li><code>-b</code>:将在连接时，会被覆写或删除的文件进行备份</li>
+<li><code>-S SUFFIX</code>:将备份的文件都加上<code>SUFFIX</code>的字尾</li>
+<li><code>-V METHOD</code>: 指定备份方式</li>
+<li><code>--help</code>: 显示辅助说明</li>
+<li><code>--version</code>:版本号</li>
+</ul>
+<h4 id="软连接与硬链接的区别"><a href="#软连接与硬链接的区别" class="headerlink" title="软连接与硬链接的区别"></a>软连接与硬链接的区别</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ ls -il   &#x2F;&#x2F;可以看到这里使用ls -i 查看了文件的inode号, inode号在Linux里面是每个文件的唯一标识,主要观察cat.js</span><br><span class="line">总用量 16</span><br><span class="line">1706410 -rw-r--r-- 1 ls ls  28 3月   4 18:03 cat.js</span><br><span class="line">1706406 -rw-r--r-- 1 ls ls  28 3月   4 16:25 cp.js</span><br><span class="line">1706408 -rw-r--r-- 1 ls ls  28 3月   4 16:24 newtest.js</span><br><span class="line">1706412 -rw-r--r-- 1 ls ls 151 3月   4 16:32 z.txt</span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ ln -s cat.js cat  &#x2F;&#x2F;这里使用ln -s 命名cat 为cat.js 的软连接</span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ ls -il </span><br><span class="line">总用量 16</span><br><span class="line">1706455 lrwxrwxrwx 1 ls ls   6 3月   5 10:37 cat -&gt; cat.js</span><br><span class="line">1706410 -rw-r--r-- 1 ls ls  28 3月   4 18:03 cat.js</span><br><span class="line">1706406 -rw-r--r-- 1 ls ls  28 3月   4 16:25 cp.js</span><br><span class="line">1706408 -rw-r--r-- 1 ls ls  28 3月   4 16:24 newtest.js</span><br><span class="line">1706412 -rw-r--r-- 1 ls ls 151 3月   4 16:32 z.txt</span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ ln -d cat.js yingcat  &#x2F;&#x2F;使用ln -d 命名yingcat 对cat.js进行硬链接</span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ ls -il</span><br><span class="line">总用量 20</span><br><span class="line">1706455 lrwxrwxrwx 1 ls ls   6 3月   5 10:37 cat -&gt; cat.js</span><br><span class="line">1706410 -rw-r--r-- 2 ls ls  28 3月   4 18:03 cat.js</span><br><span class="line">1706406 -rw-r--r-- 1 ls ls  28 3月   4 16:25 cp.js</span><br><span class="line">1706408 -rw-r--r-- 1 ls ls  28 3月   4 16:24 newtest.js</span><br><span class="line">1706410 -rw-r--r-- 2 ls ls  28 3月   4 18:03 yingcat</span><br><span class="line">1706412 -rw-r--r-- 1 ls ls 151 3月   4 16:32 z.txt</span><br></pre></td></tr></table></figure>
+
+<p>通过观察可以发现创建的软连接的<code>inode</code>号是并不相同的，而创建的硬链接的<code>inode</code>号却是相同的．</p>
+<p>这就说明硬链接是直接指向硬盘中的分区中的文件编号(<code>inode</code>),这里<code>Linux</code>允许一个文件允许多个有效路径，相当于<code>c</code>语言中的指针</p>
+<p>而软连接相当于<code>windows</code>上的快捷方式，它实际上是一个特殊的文件。在符号连接中，文件实际上是一个文本文件，其中包含的有另一文件的位置信息。</p>
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><ul>
+<li><code>?</code>:可替代单个字符</li>
+<li><code>*</code>:可替代任意字符</li>
+<li><code>[charset]:可替代</code> <code>charset</code>里面的任何单个字符</li>
+</ul>
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a><code>grep</code></h3><p><code>grep</code>是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ cat z.txt </span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">const a &#x3D; 1</span><br><span class="line">console.log(1)</span><br><span class="line">ls@ls-X542URR:~&#x2F;桌面&#x2F;img&#x2F;test$ cat z.txt | grep console</span><br><span class="line">console.log(1)</span><br></pre></td></tr></table></figure>
+
+<h3 id="关机"><a href="#关机" class="headerlink" title="关机"></a>关机</h3><ul>
+<li><code>who</code> : 查看系统在线人数</li>
+<li><code>netstat -a</code>:查看网络联机状态</li>
+<li><code>ps -aux</code>查看后台进程</li>
+<li><code>sync</code> 将数据由内存同步到硬盘中</li>
+<li><code>shutdown</code>:<ul>
+<li><code>-h now</code>立马关机</li>
+<li><code>-h 20:24</code> 系统将在今天20:24关机</li>
+<li><code>-h +10</code>十分钟后关机</li>
+<li><code>-r now</code> 立即重启</li>
+<li><code>-r +10</code>系统10分钟后重启</li>
+</ul>
+</li>
+<li><code>reboot</code> = <code>shutdown -r now</code></li>
+<li><code>halt</code>:　关闭系统　= <code>shutdown -h now</code> 和　<code>poweroff</code></li>
+</ul>
+<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><ul>
+<li>用户身份：`who  am  i </li>
+<li>查看登陆用户: <code>who</code></li>
+<li>新建用户:   <code>useradd  UserName</code></li>
+<li>为用户添加密码: <code>password  UserName</code></li>
+<li>删除用户 <code>userdel UserName</code><ul>
+<li>使用<code>-p</code>可以删除用户下的文件即用户相关联的其他文件</li>
+</ul>
+</li>
+<li>新建组群 <code>groupadd GroupName</code></li>
+<li>删除组群 <code>groupdel GroupName</code></li>
+</ul>
+<h3 id="挂载U盘"><a href="#挂载U盘" class="headerlink" title="挂载U盘"></a>挂载U盘</h3><p>这里有<code>WSL</code>和<code>Linux</code>物理机上有略微区别</p>
+<p><code>WSL</code>:</p>
+<p>这里主要的是你要挂载的<code>U</code>盘在<code>windows</code>上盘符名称</p>
+<p>这里我的u盘是E盘,所以在root用户下在mnt文件夹下面创建e文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /mnt/e</span><br></pre></td></tr></table></figure>
+
+<p>然后再挂载u盘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t drvfs G: &#x2F;mnt&#x2F;e</span><br></pre></td></tr></table></figure>
+
+<p>然后弹出u盘</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount /mnt/e</span><br></pre></td></tr></table></figure>
+
+<p>在<code>Linux</code>中</p>
+<p>首先进入root用户中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//先加载usb模块</span><br><span class="line">modprobe usb-storage</span><br></pre></td></tr></table></figure>
+
+<p>查看u盘设备</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br><span class="line">//假设查出来是/dev/sdc1</span><br></pre></td></tr></table></figure>
+
+<p>在/mnt中创建usb文件夹用来挂载U盘</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /mnt/usb</span><br></pre></td></tr></table></figure>
+
+<p>挂载u盘</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sdc1 /ment/usb</span><br></pre></td></tr></table></figure>
+
+<p>卸载u盘</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount  /ment/usb</span><br></pre></td></tr></table></figure>
+
+<h3 id="Shell-脚本编程"><a href="#Shell-脚本编程" class="headerlink" title="Shell 脚本编程"></a><code>Shell</code> 脚本编程</h3><p><code>shell</code>脚本必须要有执行权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"><span class="meta">#</span><span class="bash">只是我的第一个脚本程序</span></span><br><span class="line">echo "hello world"</span><br></pre></td></tr></table></figure>
+
+<p>通常第一行固定为<code>#!/bin/sh</code> , 规定执行的<code>shell</code></p>
+<p>在脚本编程中<code>#</code>代表注释,但是第一行中的<code>#!</code>并不是注释</p>
+<h4 id="Shell变量"><a href="#Shell变量" class="headerlink" title="Shell变量"></a><code>Shell</code>变量</h4><p><code>shell</code>变量所有值都是字符串</p>
+<p>分为三大类：</p>
+<ul>
+<li><p>系统变量</p>
+<ul>
+<li><p><code>$?</code>前一个命令和函数的返回码.0代表成功， 1 失败</p>
+</li>
+<li><p><code>$n</code>    <code>$1</code>表示第一个参数    ， <code>$0</code>代表程序本身，<code>$*</code>以”参数1参数2”所有的参数 , <code>$@</code> 以”参数1” “参数2”返回所有的参数, “$$” 当前进程的<code>PID</code> ,”$!”上一个进程的<code>PID</code></p>
+<p>例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir test </span><br><span class="line">//test 即为mkdir 函数的参数</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>$#</code>     命令行参数的个数</p>
+</li>
+</ul>
+</li>
+<li><p>环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $USER;</span><br></pre></td></tr></table></figure>
+
+<p>你可以在环境变量前加上<code>$</code>来使用</p>
+</li>
+<li><p>用户定义的变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var1=test;echo $var1;</span><br><span class="line">//test 使用变量时使用$</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="变量的引用和显示"><a href="#变量的引用和显示" class="headerlink" title="变量的引用和显示"></a>变量的引用和显示</h4><p><code>&#39;&#39;</code>  包括字符串</p>
+<p><code>&quot;&quot;</code>可以包含变量</p>
+<h4 id="文件状态测试"><a href="#文件状态测试" class="headerlink" title="文件状态测试"></a>文件状态测试</h4><ul>
+<li><code>-d</code> 是否为目录</li>
+<li><code>-f</code> 是否存在且为文件</li>
+<li><code>-L</code>对象存在且为符号连接</li>
+<li><code>-r</code>对象存在且可读</li>
+<li><code>-s</code> 对象存在且长度非零</li>
+<li><code>-W</code>对象存在且可写</li>
+<li><code>-x</code>对象存在且可执行</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test -f test.txt;echo $?;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="read-命令读取信息"><a href="#read-命令读取信息" class="headerlink" title="read 命令读取信息"></a><code>read</code> 命令读取信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">read name myid   //从键盘输入</span><br><span class="line">-p  允许在read在命令后指定一个提示</span><br><span class="line">read 也可以从文件信息中读信息，用重定向符号 &gt; </span><br><span class="line">read name myid  &lt; test.txt</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="Shell-算数运算及表达式"><a href="#Shell-算数运算及表达式" class="headerlink" title="Shell 算数运算及表达式"></a><code>Shell</code> 算数运算及表达式</h4><ul>
+<li><p>算术表达式 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+  -  *  /  %   ** </span><br><span class="line"></span><br><span class="line">//以下是三种不同的表达式 ,  ** 幂</span><br><span class="line"></span><br><span class="line">echo `expr 1 + 2`  //注意1与+2与加号之间的空格</span><br><span class="line"></span><br><span class="line">let b ="1+2";echo $b;</span><br><span class="line"></span><br><span class="line">echo $((1+2))</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<h5 id="条件判断式"><a href="#条件判断式" class="headerlink" title="条件判断式"></a>条件判断式</h5><ul>
+<li><code>-eq</code> : 相等</li>
+<li><code>-ge</code>: 大于等于  </li>
+<li><code>-le</code>: 小于等于  </li>
+<li><code>-ne</code>: 不等于      <code>not equal</code></li>
+<li><code>-gt</code> : 大于     <code>greater than</code></li>
+<li><code>-lt</code>: 小于        <code>less than</code></li>
+</ul>
+<h5 id="字符串测试"><a href="#字符串测试" class="headerlink" title="字符串测试"></a>字符串测试</h5><ul>
+<li><code>=</code></li>
+<li><code>!=</code></li>
+<li><code>-n</code>: 字符串长度是否大于0</li>
+<li><code>-Z</code>:字符串长度是否等于0</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">a == <span class="variable">$b</span></span></span><br><span class="line">//如果中间没有空格，它会将整个等式认为一个字符串</span><br></pre></td></tr></table></figure>
+
+<h5 id="条件结构语句"><a href="#条件结构语句" class="headerlink" title="条件结构语句"></a>条件结构语句</h5><ul>
+<li><code>if</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if 表达式1;then</span><br><span class="line">...</span><br><span class="line">elif 表达式2;then</span><br><span class="line">...</span><br><span class="line">else</span><br><span class="line">....</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>case</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">case str1 in (value1 , value2)</span><br><span class="line">....</span><br><span class="line">(value3 , value4)</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line">//;;两个代表case其中一个判断结束 ;代表执行语句结束</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h5 id="循环控制"><a href="#循环控制" class="headerlink" title="循环控制"></a>循环控制</h5><ul>
+<li><p><code>for</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for((x=2;x&lt;5;x++));do echo $x;done</span><br><span class="line"></span><br><span class="line">for i in 3 5 9</span><br><span class="line">do </span><br><span class="line"> s=$[$i+i]</span><br><span class="line"> echo $i $s</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p><code>while</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p><code>util</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</li>
+</ul>
+<h3 id="Linux-发送email"><a href="#Linux-发送email" class="headerlink" title="Linux 发送email"></a>Linux 发送email</h3><p>首先下载<code>SMTP</code>服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install heirloom-mailx</span><br></pre></td></tr></table></figure>
+
+<p>其次在你的<code>root</code>用户<code>/etc/s-nail.rc</code>最后加上配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set from&#x3D;&quot;....@qq.com&quot;</span><br><span class="line">set smtp&#x3D;&quot;smtps:&#x2F;&#x2F;smtp.qq.com:465&quot;</span><br><span class="line">set smtp-auth-user&#x3D;&quot;...@qq.com&quot;</span><br><span class="line">set smtp-auth-password&#x3D;&quot;.....&quot;      </span><br><span class="line">set smtp-auth&#x3D;login</span><br></pre></td></tr></table></figure>
+
+<p><code>smtp-auth-password</code>是你的邮箱授权码，而不是你的密码</p>
+<p>配置完成之后你就可以进行发送邮件了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s-nail -s &quot;test&quot;  messigogoa@gmail.com &lt; test.txt</span><br></pre></td></tr></table></figure>
+
+<p><code>-s</code>后面跟的是邮件的主题</p>
+<p>接下来就可以去<code>gmail</code>查看你发送的邮件啦</p>
+<h3 id="C语言进程控制"><a href="#C语言进程控制" class="headerlink" title="C语言进程控制"></a><code>C</code>语言进程控制</h3><ul>
+<li><p>进程创建</p>
+<p><code>fork</code>/<code>vfork</code></p>
+</li>
+<li><p>进程结束</p>
+<p><code>exit</code>/<code>_exit</code></p>
+</li>
+<li><p>进程等待</p>
+<p><code>wait</code>/<code>waitpid</code></p>
+</li>
+</ul>
+<h4 id="fork"><a href="#fork" class="headerlink" title="fork"></a><code>fork</code></h4><p>用户创建一个新的进程</p>
+<ul>
+<li><p>头文件：<code>unistd.h</code></p>
+<ul>
+<li><code>pid_t getpid(void);</code>：获取当前进程的进程ID</li>
+<li><code>pid_t getppid(void);</code>：获取当前进程的父进程ID</li>
+<li><code>uid_t getuid(void);</code>：获取进程的实际用户ID</li>
+<li><code>uid_t geteuid(void);</code>：获取进程的有效用户ID</li>
+<li><code>gid_t getgid(void);</code>：获取进程的实际用户组ID</li>
+<li><code>gid_t getegid(void);</code>：获取进程的有效用户组ID</li>
+</ul>
+</li>
+<li><p>返回：单调用双返回 ， 子进程返回0 ， 父进程返回子进程的<code>ID</code>，出错为<code>-1</code></p>
+</li>
+</ul>
+<p>子进程是父进程的一个复制品，从父进程处继承了整个进程的地址空间</p>
+<p>子进程所独有的只有他的进程号，资源使用和计时器等。</p>
+<p>父进程的代码从<code>fork</code>函数的返回开始分别在两个地址空间中同时运行</p>
+<p><code>fork</code>之后，父进程或子进程运行是不能确定的</p>
+<p>新进程的创建，首先在内存中为新进程创建一个<code>task_struct</code>结构，然后将父进程的<code>task_struct</code>内容复制其中，再修改部分数据：分配新的内核堆栈、新的PID、再将这个<code>task_struct</code>添加到链表中，所谓创建，实际上是“复制”；</p>
+<p>子进程刚开始，内核并没有为它分配物理内存，而是以只读的方式共享父进程内存，只有当子进程写时，才复制；即<code>copy-on-write</code>；fork都是由do_fork实现的；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;    //标准输入输出函数库</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;  //stdlib.h里面定义了五种类型、一些宏和通用工具函数。 类型例如size_t、wchar_t、div_t、ldiv_t和lldiv_t；</span></span></span><br><span class="line"><span class="comment">//宏例如EXIT_FAILURE、EXIT_SUCCESS、RAND_MAX和MB_CUR_MAX等等；常用的函数如malloc()、calloc()、realloc()、free()、system()、atoi()、atol()、rand()、srand()、exit()等等</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"before fork:n%d\n"</span> , n);</span><br><span class="line">    <span class="keyword">pid_t</span> pid = fork();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(pid &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"fork error"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pid == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">         n++;</span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">"child_process(%d , ppid=%d):n=%d\n"</span> , getpid() , getppid() , n);</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        n--;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"parent_proc(%d):n=%d\n"</span> , getpid() , n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"quit_proc(%d)..\n"</span> , getpid());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ls@V3BJBRBGP58UMHQ:~/C_in_Linux/process$ ./forkok </span><br><span class="line">before fork:n0</span><br><span class="line">parent_proc(862):n=-1</span><br><span class="line">quit_proc(862)..</span><br><span class="line">child_process(863 , ppid=862):n=1</span><br><span class="line">quit_proc(863)..</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="vfork"><a href="#vfork" class="headerlink" title="vfork"></a><code>vfork</code></h4><p>区别于<code>fork</code> ，<code>vfork</code>并不完全复制进程的数据段，而是和父进程共享数据段</p>
+<p>对父子进程执行次序有限制，<code>vfork</code>将父进程挂起，直至子进程返回</p>
+<p><code>vfork</code>保证子进程先运行，在它调用<code>exec</code>或<code>exit</code>之后父进程才可能被调度运行</p>
+<h5 id="wait-waitpid"><a href="#wait-waitpid" class="headerlink" title="wait , waitpid"></a><code>wait , waitpid</code></h5><p><code>pid_t wait(int *status);</code>：等待任意子进程退出，并捕获退出状态</p>
+<ul>
+<li>头文件：<code>sys/wait.h</code>、<code>sys/types.h</code></li>
+<li><code>status</code>：输出参数，保存退出状态，可设置为NULL</li>
+<li>返回值：返回捕获到的子进程ID，失败返回-1，并设置errno</li>
+</ul>
+<p><code>pid_t waitpid(pid_t pid, int *status, int options);</code>：等待子进程退出，并捕获退出状态</p>
+<ul>
+<li>头文件：<code>sys/wait.h</code>、<code>sys/types.h</code></li>
+<li><code>pid</code>：输入参数，等待什么子进程：<br><code>&gt;0</code>：等待指定pid的子进程；<br><code>0</code>：等待与当前进程同一组ID下的任意子进程；<br><code>-1</code>：等待任意子进程；同wait()；<br><code>&lt;-1</code>：等待组ID为pid绝对值的任意子进程；</li>
+<li><code>status</code>：输出参数，保存退出状态，可设置为NULL</li>
+<li><code>options</code>：输入参数，等待子进程的选项，可以为0、宏或宏的组合(使用按位或<code>|</code>运算符)：<ul>
+<li><code>WNOHANG</code>：如果没有子进程终止就立即返回，返回值为0；</li>
+<li><code>WUNTRACED</code>：如果一个子进程stoped且没有被traced，那么立即返回；</li>
+<li><code>WCONTINUED</code>：如果stoped的子进程通过SIGCONT复苏，那么立即返回；</li>
+</ul>
+</li>
+<li>返回值：成功返回捕获到的子进程ID，WNOHANG选项下若没捕获到子进程退出则返回0，失败返回-1，并设置errno</li>
+</ul>
+<p><code>status</code>退出状态的相关宏：</p>
+<ul>
+<li><code>WIFEXITED(status)</code>：如果子进程正常退出返回真</li>
+<li><code>WEXITSTATUS(status)</code>：返回子进程的退出码，当且仅当WIFEXITED为真时有效</li>
+<li><code>WIFSIGNALED(status)</code>：如果子进程被一个信号终止时返回真</li>
+<li><code>WTERMSIG(status)</code>：返回终止子进程的信号编号，当且仅当WIFSIGNALED为真时有效</li>
+<li><code>WCOREDUMP(status)</code>：如果子进程导致了”核心已转储”则返回真，当且仅当WIFSIGNALED为真时有效</li>
+<li><code>WIFSTOPPED(status)</code>：如果子进程被一个信号暂停时返回真，当且仅当调用进程使用WUNTRACED或子进程正在traced时有效</li>
+<li><code>WSTOPSIG(status)</code>：返回引起子进程暂停的信号编号，当且仅当WIFSTOPPED为真时有效</li>
+<li><code>WIFCONTINUED(status)</code>：如果子进程收到SIGCONT而复苏时返回真</li>
+</ul>
+<p>处理子进程的退出有以下两种方式：</p>
+<ul>
+<li>通过信号处理函数<code>signal()</code>，如可以忽略子进程的<code>SIGCHLD</code>信号来防止僵尸进程的产生：<code>signal(SIGCHLD, SIG_IGN);</code></li>
+<li>通过调用<code>wait()</code>、<code>waitpid()</code>函数，来回收子进程，防止产生僵尸进程，占用PID等宝贵的系统资源；</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;wait.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">pid_t</span> pid,</span><br><span class="line">    fpid = fork();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(fpid &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        perror(<span class="string">"fork error"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (fpid == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* 子进程*/</span></span><br><span class="line">        sleep(<span class="number">5</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">5</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* 父进程 */</span></span><br><span class="line">        <span class="keyword">int</span> stat;</span><br><span class="line">        <span class="keyword">for</span>(;;)&#123;</span><br><span class="line">            pid = waitpid(fpid , &amp;stat , WNOHANG);</span><br><span class="line">            <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)&#123;<span class="comment">//子进程退出</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">/*等待 */</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"wait_child_proc...\n"</span>);</span><br><span class="line">                sleep(<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(WIFEXITED(stat))&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"child_proc(%d): exit_code:%d\n"</span> , pid , WEXITSTATUS(stat));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ls@V3BJBRBGP58UMHQ:~/C_in_Linux/process$ ./vforkok </span><br><span class="line">wait_child_proc...</span><br><span class="line">wait_child_proc...</span><br><span class="line">wait_child_proc...</span><br><span class="line">wait_child_proc...</span><br><span class="line">wait_child_proc...</span><br><span class="line">child_proc(1515): exit_code:5</span><br></pre></td></tr></table></figure>
+
+<h5 id="exec函数"><a href="#exec函数" class="headerlink" title="exec函数"></a><code>exec</code>函数</h5><p>exec系统调用是以新的进程空间替换现在的进程空间，但是pid不变，还是原来的pid，相当于换了个身体，但是名字不变；</p>
+<p>调用exec后，系统会申请一块新的进程空间来存放被调用的程序，然后当前进程会携带pid跳转到新的进程空间，并从main函数开始执行，旧的进程空间被回收；</p>
+<p>头文件：<code>unistd.h</code></p>
+<ul>
+<li><code>int execl(const char *path, const char *arg, ...);</code></li>
+<li><code>int execlp(const char *file, const char *arg, ...);</code></li>
+<li><code>int execle(const char *path, const char *arg, ..., char *const envp[]);</code></li>
+<li><code>int execv(const char *path, char *const argv[]);</code></li>
+<li><code>int execvp(const char *file, char *const argv[]);</code></li>
+<li><code>int execve(const char *path, char *const argv[], char *const envp[]);</code><ul>
+<li>第一个参数是目标程序的绝对路径</li>
+<li>第二个参数是命令行参数</li>
+<li>第三个参数是环境变量</li>
+</ul>
+</li>
+<li><code>int main(int argc, char *argv[], char *envp[]);</code><ul>
+<li><code>argc</code>：命令行参数的个数，一个整数；</li>
+<li><code>argv</code>：命令行参数，一个字符串数组，数组最后一个元素为NULL；</li>
+<li><code>envp</code>：环境变量，一个字符串数组，数组最后一个元素为NULL；</li>
+</ul>
+</li>
+</ul>
+<p>主要分为两大类：</p>
+<ul>
+<li>以<code>execv</code>开头：argv参数是一个字符串数组的形式；</li>
+<li>以<code>execl</code>开头：argv参数是一个可变参数列表的形式；</li>
+</ul>
+<p>细分又有三类：</p>
+<ul>
+<li>不带后缀<code>e</code>：表示新进程继承旧进程的环境变量；</li>
+<li>带后缀<code>e</code>：表示新进程不继承旧进程的环境变量，环境变量由envp参数指定；</li>
+<li>带后缀<code>p</code>：表示第一个参数可以是一个程序名，该程序名可以在环境变量PATH中找到；</li>
+</ul>
+<p>命令行参数argv的第0个元素是执行的文件名；<br>环境变量envp的每个元素都是<code>KEY=VALUE</code>的形式，<code>KEY</code>是变量名，<code>VALUE</code>是变量的值；</p>
+<p>返回值：执行成功没有返回值，因为原来的进程空间都没了，执行失败则返回-1，并设置errno</p>
+<p>一个简单的例子：<code>execlp(&quot;echo&quot;, &quot;echo&quot;, &quot;www.zfl9.com&quot;, NULL);</code>将执行命令<code>echo www.zfl9.com</code></p>
+<h4 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h4><h4 id="堆栈段"><a href="#堆栈段" class="headerlink" title="堆栈段"></a>堆栈段</h4><p>函数的参数，(<code>int , cahr</code>)之类的局部变量….</p>
+<h4 id="数据段"><a href="#数据段" class="headerlink" title="数据段"></a>数据段</h4><p>全局变量，字符常量 ，宏定义常量，用户创建可使用的内存空间 、</p>
+<h4 id="进程终止"><a href="#进程终止" class="headerlink" title="进程终止"></a>进程终止</h4><ul>
+<li>从main返回</li>
+<li>显式调用<code>exit</code></li>
+<li>调用<code>_exit</code>或<code>_Exit</code>系统内核杀死</li>
+<li>最后一个线程返回</li>
+<li>最后一个线程<code>pthread exit</code></li>
+</ul>
+<p>异常</p>
+<ul>
+<li>调用<code>abort</code></li>
+<li>接收到一个信号并终止</li>
+<li>最后一个线程对取消请求做出相应</li>
+</ul>
+<p>头文件：<code>stdlib.h</code></p>
+<ul>
+<li><code>void exit(int status);</code></li>
+<li><code>void _Exit(int status);</code></li>
+</ul>
+<p>头文件：<code>unistd.h</code></p>
+<ul>
+<li><code>void _exit(int status);</code></li>
+</ul>
+<h5 id="exit和-exit-Exit的区别"><a href="#exit和-exit-Exit的区别" class="headerlink" title="exit和_exit/_Exit的区别"></a><strong><code>exit</code>和<code>_exit/_Exit</code>的区别</strong></h5><ul>
+<li>exit是系统调用级别的，用于进程运行的过程中，随时结束进程；</li>
+<li>return是语言级别的，用于调用堆栈的返回，返回上一层调用；</li>
+<li>exit会调用终止处理程序和用户空间的标准I/O清理程序(如fclose)，而_<code>exit</code>和<code>_Exit</code>不调用而直接由内核接管进行清理；</li>
+<li>在main函数中调用<code>exit(0)</code>等价于<code>return 0</code>；</li>
+</ul>
+<p><code>_exit()</code>函数的作用最为简单：直接使进程停止运行，清除其使用的内存空间，并销毁其在内核中的各种数据结构；</p>
+<p><code>exit()</code>函数则在这些基础上作了一些包装，在执行退出之前加了若干道工序；</p>
+<p><code>exit()</code>函数与<code>_exit()</code>函数最大的区别就在于<code>exit()</code>要检查文件的打开情况，把文件缓冲区中的内容写回文件，就是”清理I/O缓冲”；</p>
+<p><a href="https://www.zfl9.com/c-multi-proc.html" target="_blank" rel="noopener">c语言进程</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>lpopopo</span>
+                    </p>
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Linux/"># Linux</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/03/01/React%E6%BA%90%E7%A0%81/">React源码</a>
+            
+            
+            <a class="next" rel="next" href="/2020/02/26/react-Read/">react Read</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© lpopopo | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

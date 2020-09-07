@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="lpopopo">
+
+
+
+    <meta name="description" content="A boy of no one">
+
+
+
+<title>计算机网络 | no one</title>
+
+
+
+    <link rel="icon" href="/m7.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">lpopopo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">lpopopo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">计算机网络</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">lpopopo</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">四月 23, 2020&nbsp;&nbsp;20:33:14</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/network/">network</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><h3 id="提供服务"><a href="#提供服务" class="headerlink" title="提供服务"></a>提供服务</h3><p>负责在不同的网络之间尽力转发数t据包，基于数据包的<code>IP</code>地址转发,如果包丢失，不负责重传，可能失序。</p>
+<h3 id="利用Cisco-Packet-Tracer搭建网络"><a href="#利用Cisco-Packet-Tracer搭建网络" class="headerlink" title="利用Cisco Packet Tracer搭建网络"></a>利用<code>Cisco Packet Tracer</code>搭建网络</h3><p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/dajian.png" alt></p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/config.png" alt></p>
+<p>点击主机选择<code>Desktop</code>就会出现此页面，再选择<code>IP Configuration</code></p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ipconfig.png" alt></p>
+<p><code>IP Address</code>配置相应的<code>IP</code>地址，<code>Subnet Mask</code>配置子网掩码，<code>Default Gateway</code>配置默认网关</p>
+<p>所有的主机进行下面相应的配置完成之后，在相同网段中的局域网中的主机就可以使用<code>ping</code>命令检查是否联通了。但是不同网络总的主机仍然不能<code>ping</code>通,因为在路由器中转发需要转发表进行转发。而转发表可以通过配置和自学习的方式获得。接下来就直接去配置路由器的转发表吧</p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/routeconfig.png" alt></p>
+<p>点击路由器选择<code>CLI</code>就可以看到如下页面</p>
+<p>首先</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Continue with configuration dialog? [yes&#x2F;no]: n</span><br></pre></td></tr></table></figure>
+
+<p>在回车</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router&gt;</span><br></pre></td></tr></table></figure>
+
+<p>输入<code>enable</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Router&gt;enable</span><br><span class="line">Router#</span><br><span class="line">Router#config t                                           &#x2F;&#x2F;进入到配置</span><br><span class="line">Router(config)#interface serial3&#x2F;0                       &#x2F;&#x2F;选择配置端口</span><br></pre></td></tr></table></figure>
+
+<p>首先是端口开启与关闭命令 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;开启</span><br><span class="line">Router(config-if)#no shutdown</span><br><span class="line"></span><br><span class="line">%LINK-5-CHANGED: Interface Serial3&#x2F;0, changed state to up</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;关闭</span><br><span class="line">Router(config-if)#shutdown</span><br></pre></td></tr></table></figure>
+
+<p>端口配置<code>IP</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config-if)#ip address 11.0.0.1 255.0.0.0     &#x2F;&#x2F;11.0.0.1为	IP ， 255.0.0.0为子网掩码</span><br></pre></td></tr></table></figure>
+
+<p>配置转发表</p>
+<p>查看路由表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Router#show ip route</span><br><span class="line">Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area</span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP</span><br><span class="line">       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area</span><br><span class="line">       * - candidate default, U - per-user static route, o - ODR</span><br><span class="line">       P - periodic downloaded static route</span><br><span class="line"></span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">C    10.0.0.0&#x2F;8 is directly connected, FastEthernet0&#x2F;0</span><br><span class="line">C    11.0.0.0&#x2F;8 is directly connected, Serial2&#x2F;0</span><br><span class="line">S    12.0.0.0&#x2F;8 [1&#x2F;0] via 11.0.0.2</span><br></pre></td></tr></table></figure>
+
+<p>添加路由</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#ip route 12.0.0.0 255.0.0.0 11.0.0.2</span><br></pre></td></tr></table></figure>
+
+<p>指定到子网掩码为<code>255.0.0.0</code>的<code>12.0.0.0</code>网段的所有主机的下一跳为<code>11.0.0.2</code></p>
+<p>配置完路由之后你就可以用<code>10.0.0.0</code>网段的主机<code>ping 12.0.0.0</code>中的主机了</p>
+<h3 id="IP分类"><a href="#IP分类" class="headerlink" title="IP分类"></a><code>IP</code>分类</h3><p>分类地址即将32位<code>IP</code>地址划分成两个固定长度的块，每个块代表不同的含义。其中一个称为网络地址，用来标明主机所接入的网络，该网络地址在全球唯一的；另一个称为主机号，标识接入前面网络地址的主机。从这种两级的<code>IP</code>地址结构可以看出，<code>IP</code>地址在互联网上都是唯一的。常见的分类地址就是A类、B类、C类</p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/D:/Coding/blog/blog/source/_posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ip.png" alt="img"></p>
+<p>上图中，A类、B类、C类都是单播地址，网络号前面0、10、110值固定的，永久不会改变。其对应的网络号位数也分别是8、16、24位。网络号所占位数越多，能接入的主机就越少，毕竟<code>IP</code>地址固定为32位。 32位二进制的记法并不适合我们人类阅读，从引进方便人类阅读的点分十进制，也就是我们熟悉的样子：128.11.3.31</p>
+<ul>
+<li>在A类地址中，网络号占8位，第一位固定为0，那么还剩下7位。由于网络号全为0代表本地（“this”）和网络号全为1（0111 1111）代表本地软件的环回地址。所以可分配的网络号数为2^7-2。与网络号类似，主机号全零的<code>IP</code>地址表示“本机”所连接到的单个网络地址；而全1则表示该网络号上的所有主机。因此A类的主机数为2^24-2。</li>
+<li>在B类地址中，网络号占16位，即两个字节，前两位固定，那么可分配的网络号数为214（因为网络号后面14位无论如何取值，都不会出现全零和全1的状况，所以不需要减2。但实际上128.0.0.0网络地址是不指派的，所以网络地址总数应该是2^14-1。那么主机号数共2^16-2。</li>
+<li>C类地址与B类地址类似，所以网络地址总数为2^24-1，主机数为2^8-2</li>
+<li>D类地址常用于多播，即一对多通信。</li>
+</ul>
+<h3 id="划分子网"><a href="#划分子网" class="headerlink" title="划分子网"></a>划分子网</h3><h4 id="两级IP地址到三级IP地址"><a href="#两级IP地址到三级IP地址" class="headerlink" title="两级IP地址到三级IP地址"></a>两级<code>IP</code>地址到三级<code>IP</code>地址</h4><p>两级<code>IP</code>的问题:</p>
+<ul>
+<li><strong><code>IP</code>地址空间利用率有时很低</strong>:一个A类地址网络可以连接主机数超过1000万台，B类超过6万台。对主机数需求不大的单位又不愿申请C类，造成大量<code>IP</code>地址浪费。</li>
+<li><strong>路由表变得太大</strong>:给每一个物理网络分配一个网络地址，会导致路由器的路由表的项目数越来越多，从而导致网络性能下降。</li>
+<li><strong>两级<code>IP</code>地址不够灵活</strong>:一个单位在新的地点新建一个网络，是无法立即接入互联网的，需要向管理机构申请新的网络地址。</li>
+</ul>
+<p>三级结构:</p>
+<p>同个子网内的所有主机，网络号也是相同，子网内的主机对外通讯需要将数据报发给路由器，再由路由器统一发送到其他网络。其他主机发送到本子网的主机也需要经过路由器。也就是说，划分子网是单位内部的事，对外还是表现为一个网络。</p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ip_huafen.png" alt></p>
+<h4 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h4><p>那么，当外部数据达到路由器，路由器如何转发给子网呢？从IP数据报首部是无法判断出网络是否划分子网的，所以需要子网掩码来协助。子网掩码是用来计算子网的网络地址。假如子网掩码为255.255.255.0，IP地址为145.13.3.10，将子网掩码和IP地址逐位与（AND）,得到145.130.3.0就是子网网络地址。</p>
+<p>使用子网掩码的好处是无论有没有划分子网，通过和IP地址按位与，可以快速得出网络地址，进行分组转发。如果划分子网，那么使用子网掩码就可以计算子网络地址，没有划分，方便路由器在路由表中查找下一跳。所以现在网络规定必须使用子网掩码</p>
+<h4 id="构建超网"><a href="#构建超网" class="headerlink" title="构建超网"></a>构建超网</h4><p>构造超网也就是无分类编址<code>（CIDR）</code>，划分子网能在一定程度缓解<code>IP</code>地址不够用的问题，但是还不够，因此出现了<strong>无分类域间路由选择<code>（CIDR）</code></strong>。<code>CIDR</code>具有以下两大特点：</p>
+<p><strong>消除传统分类地址和子网划分</strong>，成为无分类的两级编址，记法为：</p>
+<p><code>IP</code>地址::={网络前缀:主机}</p>
+<p>更熟悉的记法是<strong>斜线记法</strong>：</p>
+<p>128.14.35.7/20</p>
+<p>20表示前20位为网络地址（网络前缀），而剩下的12位为主机号。通过斜线记法也可以得出最小地址为128.14.32.0；最大地址为128.14.47.255。</p>
+<h3 id="计算机通信过程"><a href="#计算机通信过程" class="headerlink" title="计算机通信过程"></a>计算机通信过程</h3><ul>
+<li>应用程序准备要传输的文件</li>
+<li>传输层将文件分段 并编号</li>
+<li>网络层 添加目标<code>IP</code>地址 ，源<code>IP</code>地址</li>
+<li>数据链路层 ： 首先使用自己的子网掩码 判断自己在那个网段 ， 在使用子网掩码，判断目标地址在那个网段<strong>（<code>IP</code>地址决定起点与终点，<code>MAC</code>地址决定下一跳给谁）</strong><ul>
+<li>如果判断网段相同，直接使用<code>ARP</code>协议广播解析目标<code>IP</code>地址的<code>MAC</code></li>
+<li>如果网段不同,(交换机根据<code>MAC</code>地址转发)。广播默认网关的<code>MAC</code>地址</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/1.png" alt></p>
+<p>说明：在路由器之间的传输的<code>MAC</code>地址因为是点对点传输<code>PPP</code>协议，所以之间的传输地址为<code>FFF</code></p>
+<h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a><code>ARP</code>协议</h3><p>在实际网络数据链路中传递数据帧，使用的还是硬件地址，因此需要通过<code>ARP</code>将<code>IP</code>地址解析出在数据链路层使用的硬件地址。</p>
+<p>每台主机都设有<code>ARP</code>高速缓存，存有本局域网上的各主机和路由器的<code>IP</code>地址到硬件地址的映射表，该映射表是动态更新的。因为<code>IP</code>地址32位，而硬件地址是48位，经常的转换计算操作是非常的耗性能，所以通过高速缓存来存储<code>IP</code>地址和硬件地址的映射关系。同时由于主机经常添加和移除，所以需要动态更新映射表。映射地址项在映射表中都有生存时间，超过了生存时间就会被剔除。</p>
+<p><code>ARP</code>将<code>IP</code>地址通过广播，目标<code>MAC</code>地址是<code>FF-FF-FF-FF-FF-FF</code>解析目标<code>IP</code>地址的<code>MAC</code>地址</p>
+<h4 id="检查自己的ARP缓存"><a href="#检查自己的ARP缓存" class="headerlink" title="检查自己的ARP缓存"></a>检查自己的<code>ARP</code>缓存</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator&gt;ipconfig</span><br></pre></td></tr></table></figure>
+
+<p>查看网络配置</p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ipconfig_cmd.png" alt></p>
+<p>查看到主机的默认网关<code>192.168.0.1</code></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator&gt;ping <span class="number">192.168</span>.<span class="number">0.1</span></span><br><span class="line"></span><br><span class="line">正在 Ping <span class="number">192.168</span>.<span class="number">0.1</span> 具有 <span class="number">32</span> 字节的数据:</span><br><span class="line">来自 <span class="number">192.168</span>.<span class="number">0.1</span> 的回复: 字节=<span class="number">32</span> 时间=<span class="number">1</span>ms TTL=<span class="number">64</span></span><br><span class="line">来自 <span class="number">192.168</span>.<span class="number">0.1</span> 的回复: 字节=<span class="number">32</span> 时间=<span class="number">1</span>ms TTL=<span class="number">64</span></span><br><span class="line">来自 <span class="number">192.168</span>.<span class="number">0.1</span> 的回复: 字节=<span class="number">32</span> 时间=<span class="number">1</span>ms TTL=<span class="number">64</span></span><br><span class="line">来自 <span class="number">192.168</span>.<span class="number">0.1</span> 的回复: 字节=<span class="number">32</span> 时间=<span class="number">1</span>ms TTL=<span class="number">64</span></span><br><span class="line"></span><br><span class="line"><span class="number">192.168</span>.<span class="number">0.1</span> 的 Ping 统计信息:</span><br><span class="line">    数据包: 已发送 = <span class="number">4</span>，已接收 = <span class="number">4</span>，丢失 = <span class="number">0</span> (<span class="number">0</span>% 丢失)，</span><br><span class="line">往返行程的估计时间(以毫秒为单位):</span><br><span class="line">    最短 = <span class="number">1</span>ms，最长 = <span class="number">1</span>ms，平均 = <span class="number">1</span>ms</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/arp.png" alt></p>
+<p>就可以查看到网关相对应的<code>MAC</code>地址</p>
+<p><a href="https://www.bilibili.com/video/BV1Hx411D7rn?p=41" target="_blank" rel="noopener">ARP欺骗</a></p>
+<h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a><code>ICMP</code>协议</h3><p><code>ICMP</code>允许在主机或路由器报告差错情况和提供有关异常的情况报告。<code>ICMP</code>报文是装在<code>IP</code>数据报中，作为<code>IP</code>数据报的数据部分。如图所示：</p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/icmp.png" alt></p>
+<h4 id="ICMP报文种类"><a href="#ICMP报文种类" class="headerlink" title="ICMP报文种类"></a><code>ICMP</code>报文种类</h4><p><code>ICMP</code>报文有<strong><code>ICMP</code>差错报告报文</strong>和<strong><code>ICMP</code>询问报文</strong>两种</p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/icmp_lei.png" alt></p>
+<h5 id="差错报告报文"><a href="#差错报告报文" class="headerlink" title="差错报告报文"></a>差错报告报文</h5><ul>
+<li><p>终点不可达：当主机或路由不能交付数据报时就向源主机发送终点不可达报文。例如上文路由表转发分组第6步就是发送此报文。</p>
+</li>
+<li><p>时间超过：在讲解<code>IP</code>数据报格式，讲到生存时间TTL，当数据报在路由器转发的次数（跳数）超过了源数据TTL的值，则会丢失该数据报，向源主机发送时间超过报文。或者终点在预定的时间内收不到所有的数据片的情况。</p>
+</li>
+<li><p>参数问题：在接收端校验首部检验数据和，如果不为0，会丢失该数据报，并向源主机发送参数问题报文。</p>
+</li>
+<li><p>改变路由：路由器把改变路由报文发给主机，让主机下次把报文发给另外的路由器（可通过更好的路由器）</p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/icmp_xunwen.png" alt></p>
+</li>
+</ul>
+<h5 id="询问报文"><a href="#询问报文" class="headerlink" title="询问报文"></a>询问报文</h5><ul>
+<li>回送请求和回答：由主机或路由表向特定主机发送出的询问。收到此询问报文的主机向主机或路由表回复的回答报文。一般用来测试目的主机的是否可达和了解相关状态</li>
+<li>时间戳请求和回答：请求主机或路由表回答当前的日期和时间。用于时间同步或时间测量。</li>
+</ul>
+<h4 id="使用ICMP的命令"><a href="#使用ICMP的命令" class="headerlink" title="使用ICMP的命令"></a>使用<code>ICMP</code>的命令</h4><ul>
+<li><p><code>ping</code></p>
+<p><code>ping(Packet Internet Grope)</code>因特网包探索器，用于测试网络连接量的程序.<code>ping</code>发送一个<code>ICMP</code>回声请求消息给目的地并报告是否收到所希望的<code>ICMP</code>回声应答</p>
+<ul>
+<li><code>-t</code>   一直持续的<code>ping</code></li>
+<li><code>-l</code>   定义数据的大小</li>
+<li><code>-i</code>   更改数据包<code>TTL</code>时间，能够跟踪数据包途径的路由器</li>
+</ul>
+</li>
+<li><p><code>tracert</code> </p>
+</li>
+<li><p><code>pathping</code> 与<code>tracert</code></p>
+</li>
+</ul>
+<h4 id="通信方式"><a href="#通信方式" class="headerlink" title="通信方式"></a>通信方式</h4><h5 id="点到点"><a href="#点到点" class="headerlink" title="点到点"></a>点到点</h5><h5 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h5><p>目标<code>MAC</code>，目标<code>IP</code>全为1，即<code>255.255.255.255</code></p>
+<h5 id="组播-多播"><a href="#组播-多播" class="headerlink" title="组播 = 多播"></a>组播 = 多播</h5><h4 id="IP数据包"><a href="#IP数据包" class="headerlink" title="IP数据包"></a><code>IP</code>数据包</h4><p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ip_bao.png" alt></p>
+<ul>
+<li><p>版本：标识<code>TCP/IP</code>版本  如<code>v4 , v6</code></p>
+</li>
+<li><p>首部长度：标识首部的长度</p>
+</li>
+<li><p>区分服务：标识优先级</p>
+</li>
+<li><p>总长度：整个数据包的长度(数据链路层帧中数据(网络层头部+数据)最大1500字节 ， 网络层数据包65535字节=&gt;分片传输)</p>
+</li>
+<li><p>标识：数据包分片时的标识，代表是同一个数据的分片</p>
+</li>
+<li><p>标志：标记数据分片或完整，占3为二进制，</p>
+<ul>
+<li>最低位：<ul>
+<li>1标识后面还有分片</li>
+<li>0代表是最后一个分片</li>
+</ul>
+</li>
+<li>中间位<ul>
+<li>1 不允许分片</li>
+<li>0 允许分片</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>片偏移：分片的数据相对于源数据的偏移</p>
+</li>
+<li><p>生存时间:(<code>TTL</code>)规定了数据包经过的最大路由器数(避免环路死循环)</p>
+<p><code>Windows</code>默认128</p>
+<p><code>Linux</code>默认64</p>
+<p><code>Unix</code>默认256</p>
+</li>
+<li><p>协议：标识协议号：<code>UDP / TCP / ..</code></p>
+<ul>
+<li><code>ICMP</code> : 1</li>
+<li><code>IGMP</code>:2</li>
+<li><code>TCP</code>:6</li>
+<li><code>UDP</code>:17</li>
+<li><code>OSPF</code>:89</li>
+</ul>
+</li>
+<li><p>首部检验和:</p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/shoubujiaoyan.png" alt></p>
+</li>
+</ul>
+<h4 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a><code>IP</code>协议</h4><h5 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h5><p>需要管理员高数路由器所有直连的网络下一跳给谁</p>
+<ul>
+<li>缺点：适合小规模网络，不能自动调增路由</li>
+</ul>
+<h5 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h5><ul>
+<li><p><code>RIP</code>协议：路由表自学习，通过广播发送自己到某个网段的经过路由器的个数，选择经过最少路由的端口进行转发(<code>Djska</code> 最短路径)算法。最大跳数为15跳</p>
+<p>配置路由<code>RIP</code></p>
+<p><img src="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/RIP.png" alt></p>
+</li>
+<li><p><code>OSPF</code>协议：选择最短路径的标准为带宽</p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>lpopopo</span>
+                    </p>
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/network/"># network</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/04/24/algorithm/">algorithm</a>
+            
+            
+            <a class="next" rel="next" href="/2020/03/02/SQL-Learn/">SQL-Learn</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© lpopopo | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

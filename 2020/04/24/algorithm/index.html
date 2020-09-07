@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="lpopopo">
+
+
+
+    <meta name="description" content="A boy of no one">
+
+
+
+<title>algorithm | no one</title>
+
+
+
+    <link rel="icon" href="/m7.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">lpopopo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">lpopopo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">algorithm</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">lpopopo</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">四月 24, 2020&nbsp;&nbsp;22:42:55</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/algorithm/">algorithm</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="LeetCode365水壶问题"><a href="#LeetCode365水壶问题" class="headerlink" title="LeetCode365水壶问题"></a><code>LeetCode365</code>水壶问题</h3><p>描述：</p>
+<p>有两个</p>
+<p>容量分别为<code>x</code>升和<code>y</code>升的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好<code>z</code>升水？</p>
+<p>如果可以，最后请用以上水壶的一个或两个来盛放取得的<code>z</code>升水.</p>
+<p>你允许：</p>
+<ul>
+<li>装满任意一个水壶</li>
+<li>清空任意一个水壶</li>
+<li>从一个水壶向另一个水壶倒水，直到装满或者倒空</li>
+</ul>
+<p>示例1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 3 , y &#x3D; 5  , z &#x3D; 4</span><br><span class="line">输出：True</span><br></pre></td></tr></table></figure>
+
+<p>示例2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：x &#x3D; 2 , y &#x3D; 6 , z &#x3D; 5</span><br><span class="line">输出：False</span><br></pre></td></tr></table></figure>
+
+<p>分析:</p>
+<p>每次操作会让桶中的水总量增加<code>x</code>或者增加<code>y</code>,减少<code>x</code>或减少<code>y</code>.对一个不满的水桶加水与倒水都是没有意义的。因为要么加满，要么清理干净。</p>
+<p>所以能否满足<code>z</code>值在于<code>x</code>与<code>y</code>值的差值</p>
+<p>步骤：</p>
+<ul>
+<li>给<code>y</code>满上水</li>
+<li>将<code>y</code>中的水倒入<code>x</code>中。</li>
+<li>如果<code>y</code>不为空则<code>x</code>为满,则将<code>x</code>清空，然后再将<code>y</code>中的水倒入<code>x</code>壶中</li>
+<li>重复上述的操作直至某一步<code>x</code>壶进行了<code>m</code>次操作,<code>y</code>壶进行了<code>n</code>次倒水操作</li>
+</ul>
+<p>由贝祖定理可得：<code>mx + ny = z</code> ,当且仅当<code>z</code>是<code>x , y</code>最大的公约数的倍数时，成立</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canMeasureWater = <span class="function"><span class="keyword">function</span>(<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x + y &lt; z) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x === <span class="number">0</span> || y === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (z === <span class="number">0</span>) || (x + y  === z);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (z % calcGcd(x, y)) === <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calcGcd</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> calcGcd(b, a % b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="LeetCode-T945使数组唯一的最小增量"><a href="#LeetCode-T945使数组唯一的最小增量" class="headerlink" title="LeetCode T945使数组唯一的最小增量"></a><code>LeetCode T945</code>使数组唯一的最小增量</h3><p>给定整数数组 A，每次 move 操作将会选择任意 <code>A[i]</code>，并将其递增 <code>1</code>。</p>
+<p>返回使<code>A</code>中的每个值都是唯一的最少操作次数</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,2,2]输出：1解释：经过一次 move 操作，数组将变为 [1, 2, 3]。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入：[3,2,1,2,1,7]输出：6解释：经过 6 次 move 操作，数组将变为 [3, 4, 1, 2, 5, 7]。可以看出 5 次或 5 次以下的 move 操作是不能让数组的每个值唯一的。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<p>1.<code>0 &lt;= A.length &lt;= 40000</code></p>
+<p>2.<code>0 &lt;= A[i] &lt; 40000</code></p>
+<p>分析：</p>
+<p>方法一：</p>
+<p>将数组进行相应的排序，然后遍历，如果一个元素与前面所有元素进行比较 ，(考虑到如果三个及以上的相同的元素排在一起)相同就将这个元素<code>+1</code>，则<code>move</code>操作也就加一</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> move = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.move = <span class="number">0</span></span><br><span class="line">    <span class="comment">//先将数组排序</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(arr)) <span class="keyword">return</span></span><br><span class="line">    arr.sort(<span class="function">(<span class="params">s1 , s2</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s1 &gt; s2) <span class="keyword">return</span>(s1-s2)</span><br><span class="line">        <span class="keyword">return</span>(s2-s1)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//将元素与前面的元素进行比较</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span> ; i &lt; arr.length ; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span> ; j &lt; i ; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i] === arr[j]) &#123;</span><br><span class="line">                arr[i]++</span><br><span class="line">                <span class="keyword">this</span>.move++</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<p>通过构建<code>hash</code>散列时，为防止hash冲突，会通过算法构建索引，其中一种就是线性探测法。就是一直向后加一</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">8000</span>)</span><br><span class="line"><span class="keyword">let</span> move = <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> minIncrementForUnique = <span class="function"><span class="keyword">function</span>(<span class="params">pos</span>)</span>&#123;</span><br><span class="line">    arr.fill(<span class="number">-1</span>)       <span class="comment">//初始化数组值为1</span></span><br><span class="line">    pos.map(<span class="function">(<span class="params">a</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> arrNum = findPos(a)</span><br><span class="line">    move += arrNum-a</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> findPos = <span class="function">(<span class="params">a</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> b = arr[a]</span><br><span class="line">    <span class="keyword">if</span>(b===<span class="number">-1</span>)&#123;</span><br><span class="line">        arr[a] = a</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    b = findPos(b+<span class="number">1</span>)</span><br><span class="line">    arr[a]  = b</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="LeetCode-T876链表的中间节点"><a href="#LeetCode-T876链表的中间节点" class="headerlink" title="LeetCode T876链表的中间节点"></a><code>LeetCode T876</code>链表的中间节点</h3><p>描述：</p>
+<p>给定一个带有头结点 head 的非空单链表，返回链表的中间结点。</p>
+<p>如果有两个中间结点，则返回第二个中间结点</p>
+<p>方法一：</p>
+<p>遍历链表的同时将元素存入数组中，然后在取出数组中的中间元素。</p>
+<p>时间复杂度：<code>O(n)</code></p>
+<p>空间复杂度：<code>O(n)</code></p>
+<p>方法二：单指针法</p>
+<p>对链表进行两个遍历，第一次遍历统计出链表的位置索引，第二次遍历取出中间链表节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> middleNode = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> linkSize = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> current = head</span><br><span class="line">  <span class="keyword">while</span>(current) &#123;</span><br><span class="line">    ++linkSize;</span><br><span class="line">    current = current.next</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> currentIndex = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> middleIndex = <span class="built_in">Math</span>.floor(linkSize / <span class="number">2</span>)</span><br><span class="line">  current = head</span><br><span class="line">  <span class="keyword">while</span> (currentIndex &lt; middleIndex) &#123;</span><br><span class="line">    ++currentIndex;</span><br><span class="line">    current = current.next;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> current;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度：<code>O(n)</code></p>
+<p>空间复杂度：<code>O(1)</code></p>
+<p>方法三：快慢指针法</p>
+<p>用两个指针<code>slow</code>与<code>fast</code>一起遍历链表。<code>slow</code>一次走一步,</p>
+<p><code>fast</code>一次走两步。当<code>fast</code>到末尾时，<code>slow</code>必然在中间</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> middleNode = <span class="function"><span class="keyword">function</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">    slow = fast = head;</span><br><span class="line">    <span class="keyword">while</span> (fast &amp;&amp; fast.next) &#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度：<code>O(n)</code></p>
+<p>空间复杂度：<code>O(1)</code></p>
+<h3 id="LeetCode-T17-16-按摩师"><a href="#LeetCode-T17-16-按摩师" class="headerlink" title="LeetCode T17.16. 按摩师"></a><code>LeetCode T17.16. 按摩师</code></h3><p>描述</p>
+<p>一个有名的按摩师会收到源源不断的预约请求，每个预约都可以选择接或不接。在每次预约服务之间要有休息时间，因此她不能接受相邻的预约。给定一个预约请求序列，替按摩师找到最优的预约集合（总预约时间最长），返回总的分钟数</p>
+<p><strong>实例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,2,3,1]</span><br><span class="line">输出：4</span><br><span class="line">解释：选择 1 号预约和 3 号预约，总时长 &#x3D; 1 + 3 &#x3D; 4。</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[2,1,4,5,3,1,1,3]</span><br><span class="line">输出：12</span><br><span class="line">解释：选择 1 号预约、 3 号预约、 5 号预约和 8 号预约总时长 &#x3D; 2 + 4 + 3 + 3 &#x3D; 12</span><br></pre></td></tr></table></figure>
+
+<p>此题是一道<strong>动态规划</strong>问题。这道题主要讨论的是第<code>i</code>个顾客是否接纳的情况下获得最大的时间。</p>
+<p>官方的解法是使用一个二维数组<code>[i][0]</code>存储的是第<code>i</code>个顾客不被接受的最大的预约时间。而<code>[i][1]</code>则是将存储的是第<code>i</code>个顾客的接受的最大的预约时间。</p>
+<p>因为对于<code>[i][0]</code>而言，他是没有被预约的顾客，所有第<code>i-1</code>个顾客的预约与否都是可以的，所以此处</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[i][<span class="number">0</span>] = Max([i<span class="number">-1</span>][<span class="number">0</span>] , [i<span class="number">-1</span>][<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<p>而对于<code>[i][1]</code>而言存储的是一个被预约的最大值，所以<code>i-1</code>位客户是不能被预约的，所以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[i][1]  &#x3D; [i-1][0]+i&#x2F;&#x2F;i指的是第i个顾客的预约时间</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> timeAll = <span class="function">(<span class="params">arr</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> dp_0 = <span class="number">0</span>,   <span class="comment">//[i][0]</span></span><br><span class="line">    dp_1 = <span class="number">0</span>,       <span class="comment">//[i][1]</span></span><br><span class="line">    max = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    arr.map(<span class="function">(<span class="params">value , key</span>)=&gt;</span>&#123;</span><br><span class="line">        max = <span class="built_in">Math</span>.max(dp_0, dp_1)</span><br><span class="line">        dp_1 = dp_0 + value</span><br><span class="line">        dp_0 = max</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(dp_1  , dp_0)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max(dp_0 , dp_1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>（英语：Dynamic programming，简称DP）是一种在数学、计算机科学和经济学中使用的，通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法。动态规划常常适用于有重叠子问题[1]和最优子结构性质的问题，动态规划方法所耗时间往往远少于朴素解法。动态规划背后的基本思想非常简单。大致上，若要解一个给定问题，我们需要解其不同部分（即子问题），再合并子问题的解以得出原问题的解                </p>
+<p>​                                                                                                                                                                ——源自维基百科</p>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><ul>
+<li>问题的一个最优解包含了子问题的最优解</li>
+<li>重叠子问题：一个递归包含了<code>&quot;small&quot; number</code>独立的子问题被反复计算的问题</li>
+</ul>
+<h4 id="探究过程"><a href="#探究过程" class="headerlink" title="探究过程"></a>探究过程</h4><p>以斐波那契数列为列子</p>
+<h5 id="第一个过程-递归"><a href="#第一个过程-递归" class="headerlink" title="第一个过程(递归)"></a>第一个过程(递归)</h5><p>最容易想到的就是利用递归的思想，在最开始接触的时候也正是递归的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">N</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (N == <span class="number">1</span> || N == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> fib(N - <span class="number">1</span>) + fib(N - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/04/24/algorithm/16c95abdd02f2886.jpg" alt></p>
+<p>在上图中可以发现许多的计算的重复的，因此浪费了许多的空间。</p>
+<h5 id="第二个过程-备忘录方法"><a href="#第二个过程-备忘录方法" class="headerlink" title="第二个过程(备忘录方法)"></a>第二个过程(备忘录方法)</h5><p>上面的递归方法中重复了许多的计算，因此我们可以将每一步计算的指存入到数组中，从而避免的重复计算而产生的不必要的开销</p>
+<p>与上述递归代码类似</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">N</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!arr[N])&#123;</span><br><span class="line">        <span class="keyword">if</span>(N == <span class="number">1</span> || N == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        arr[N] = fib(N - <span class="number">1</span>) + fib(N - <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr[N]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就减少了递归执行的调用</p>
+<p><img src="/2020/04/24/algorithm/16c95abdd0316e49.jpg" alt></p>
+<p>所以时间复杂度变为了<code>O(N)</code>,这种算法又称为自顶向下</p>
+<h5 id="第三个过程-动态规划"><a href="#第三个过程-动态规划" class="headerlink" title="第三个过程(动态规划)"></a>第三个过程(动态规划)</h5><p>动态规划是经过备忘录的演变，与之不用的是这是自底向上</p>
+<p><img src="/2020/04/24/algorithm/16c95abdd13d8a9e.jpg" alt></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">N</span>) </span>&#123;</span><br><span class="line">    arr[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">    arr[<span class="number">1</span>] = arr[<span class="number">2</span>] = <span class="number">1</span>    <span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">3</span> ; i &lt;= N ; i++)&#123;</span><br><span class="line">        arr[i] = arr[i<span class="number">-1</span>] + arr[i<span class="number">-2</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr[N]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">N</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pre_0 = <span class="number">0</span>,</span><br><span class="line">        pre_1 = <span class="number">1</span>,</span><br><span class="line">        next;</span><br><span class="line">    <span class="keyword">switch</span>(N)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> pre_1</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">if</span>(N &lt;= <span class="number">0</span>) <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">2</span> ; i &lt;= N ; i++)&#123;</span><br><span class="line">                next = pre_0 + pre_1</span><br><span class="line">                pre_0 = pre_1</span><br><span class="line">                pre_1 = next </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> pre_1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样一来，我们发现计算的数只是与前两个数的状态有关，所以只需要将前两个的结果保存下来即可。所以这样在空间复杂度上面就有了极大的提升。</p>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><h5 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h5><p>描述：</p>
+<p>假设你正在爬楼梯。需要 <em>n</em> 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p><strong>注意：</strong>给定 <em>n</em> 是一个正整数。</p>
+<p><strong>示例 1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入： 2</span><br><span class="line">输出： 2</span><br><span class="line">解释： 有两种方法可以爬到楼顶。</span><br><span class="line">1.  1 阶 + 1 阶</span><br><span class="line">2.  2 阶</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入： 3</span><br><span class="line">输出： 3</span><br><span class="line">解释： 有三种方法可以爬到楼顶。</span><br><span class="line">1.  1 阶 + 1 阶 + 1 阶</span><br><span class="line">2.  1 阶 + 2 阶</span><br><span class="line">3.  2 阶 + 1 阶</span><br></pre></td></tr></table></figure>
+
+<p>分析：</p>
+<p>由题意得：</p>
+<p>一次只能跳一个或者两格，所以对于初始化：对于一阶楼梯就只有一种方法。而对于两个楼梯而言，上述示例1中。</p>
+<p>当时对于三阶而言，对于第一下，假如跳1 ， 剩下2 ， 就是上面初始化中的二阶楼梯跳法</p>
+<p>​                                                          假如跳2 ， 剩下1 ， 就是上面初始化中的一阶楼梯跳法</p>
+<p>​        对于四阶而言，       第一下，假如跳1 ， 剩下3  ， 就是上面的三阶楼梯跳法。</p>
+<p>​                                                          加入跳2 ， 剩下2 ， 就是初始化的二阶楼梯跳法。</p>
+<p>所以，综上所述：第<code>i</code>阶的方法数 = <code>i-1</code>的方法数 + <code>i-2</code>的方法数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jump = <span class="function">(<span class="params">n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> jump_1 = <span class="number">1</span>,</span><br><span class="line">        jump_2 = <span class="number">2</span>,</span><br><span class="line">        sum;</span><br><span class="line">    <span class="keyword">switch</span>(n)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> jump_1</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> jump_2</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">if</span>(n &lt; <span class="number">1</span>) <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">3</span> ; i &lt;= n ; i++)&#123;</span><br><span class="line">                sum = jump_1 + jump_2</span><br><span class="line">                jump_1 = jump_2</span><br><span class="line">                jump_2 = sum</span><br><span class="line">            &#125;        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> jump_2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="LeetCode-T892三维形体的表面积"><a href="#LeetCode-T892三维形体的表面积" class="headerlink" title="LeetCode T892三维形体的表面积"></a><code>LeetCode T892</code>三维形体的表面积</h3><p>描述</p>
+<p>在<code>N * N</code> 的网格上，我们放置一些<code>1 * 1 * 1</code> 的立方体。</p>
+<p>每个值 <code>v = grid[i][j]</code>表示 v 个正方体叠放在对应单元格 (i, j) 上。</p>
+<p>请你返回最终形体的表面积。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[[2]]</span><br><span class="line">输出：10</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[[1,2],[3,4]]</span><br><span class="line">输出：34</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[[1,0],[0,2]]</span><br><span class="line">输出：16</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[[1,1,1],[1,0,1],[1,1,1]]</span><br><span class="line">输出：32</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 5：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[[2,2,2],[2,1,2],[2,2,2]]</span><br><span class="line">输出：46</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>1 &lt;= <code>N</code>&lt;= 50</li>
+<li>0 &lt;=<code>grid[i][j]</code>&lt;= 50</li>
+</ul>
+<p>分析：</p>
+<p>对于立方体重叠而言，随着重叠的个数的增加，从而减少的面数为<code>y = 2(n-1)</code>。</p>
+<p>对于重叠而言：有水平方向和垂直方向两个方向的重叠。</p>
+<p>对于垂直而言，就只有一个方向考虑，且在数组中表示出来。</p>
+<p>对于水平而言，就有行与列，且在不同的高度也会有水平的重叠</p>
+<p>而对与数组而言，他存储的最小的单位就是垂直方向上的一堆（楼房一般一栋一栋），其次就是一行与一列，可以先算遍历出的总的正方体数，其次再算向邻栋之间的重叠。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> grid = <span class="function">(<span class="params">arr</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!arr || !arr[<span class="number">0</span>].length) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">const</span> n= arr.length</span><br><span class="line">    <span class="keyword">const</span> m = arr[<span class="number">0</span>].length</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; n ; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span> ; j &lt; m ; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i][j] === <span class="number">0</span>) <span class="keyword">continue</span></span><br><span class="line">            sum += <span class="number">6</span>*arr[i][j]</span><br><span class="line">            <span class="comment">//减去第一栋之间重叠的</span></span><br><span class="line">            sum -= <span class="number">2</span>*(arr[i][j] - <span class="number">1</span>) </span><br><span class="line">    </span><br><span class="line">            <span class="comment">//减去每一栋之间行与列之间的重叠的</span></span><br><span class="line">            <span class="keyword">if</span>( i &gt; <span class="number">0</span>) sum -= <span class="number">2</span>*<span class="built_in">Math</span>.min(arr[i<span class="number">-1</span>][j] , arr[i][j])</span><br><span class="line">            <span class="keyword">if</span>( j &gt; <span class="number">0</span>) sum -= <span class="number">2</span>*<span class="built_in">Math</span>.min(arr[i][j<span class="number">-1</span>] , arr[i][j])            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="LeetCode-T914卡牌分组"><a href="#LeetCode-T914卡牌分组" class="headerlink" title="LeetCode T914卡牌分组"></a><code>LeetCode T914</code>卡牌分组</h3><p>描述</p>
+<p>给定一副牌，每张牌上都写着一个整数。</p>
+<p>此时，你需要选定一个数字 X，使我们可以将整副牌按下述规则分成 1 组或更多组：</p>
+<ul>
+<li><p>每组都有 X 张牌。</p>
+</li>
+<li><p>组内所有的牌上都写着相同的整数。</p>
+</li>
+</ul>
+<p>仅当你可选的 X &gt;= 2 时返回 true。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,2,3,4,4,3,2,1]</span><br><span class="line">输出：true</span><br><span class="line">解释：可行的分组是 [1,1]，[2,2]，[3,3]，[4,4]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,1,1,2,2,2,3,3]</span><br><span class="line">输出：false</span><br><span class="line">解释：没有满足要求的分组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[1]</span><br><span class="line">输出：false</span><br><span class="line">解释：没有满足要求的分组。</span><br></pre></td></tr></table></figure>
+
+<p>分析</p>
+<p>我们发现每个数组必须满足以下条件：</p>
+<ul>
+<li>相同牌的个数必须大于2</li>
+<li>不同牌个数可以拆分为相同个数的小组，这点非常关键</li>
+</ul>
+<p>为了好记录每张牌的张数，使用 <code>Map</code> 来存放数据。然后获取到存放张数的数组，保证每一项与前一项的最大公约数都大于1。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hasGroupsSizeX = <span class="function"><span class="keyword">function</span> (<span class="params">deck</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> n <span class="keyword">of</span> deck)&#123;</span><br><span class="line">      m.set(n,m.has(n)?m.get(n)+<span class="number">1</span>:<span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> vals = [...m.values()]</span><br><span class="line">  <span class="keyword">let</span> res = vals[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">return</span> vals.every(<span class="function"><span class="params">val</span> =&gt;</span> (res = calcGcd(res, val)) &gt; <span class="number">1</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calcGcd</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> b === <span class="number">0</span> ? a : calcGcd(b, a % b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="LeetCode-T820单词的压缩编码"><a href="#LeetCode-T820单词的压缩编码" class="headerlink" title="LeetCode T820单词的压缩编码"></a><code>LeetCode T820</code>单词的压缩编码</h3><p>描述</p>
+<p>给定一个单词列表，我们将这个列表编码成一个索引字符串 <code>S</code> 与一个索引列表 <code>A</code>。</p>
+<p>例如，如果这个列表是 <code>[&quot;time&quot;, &quot;me&quot;, &quot;bell&quot;]</code>，我们就可以将其表示为 <code>S = &quot;time#bell#&quot;</code> 和 <code>indexes = [0, 2, 5]</code>。</p>
+<p>对于每一个索引，我们可以通过从字符串 S 中索引的位置开始读取字符串，直到 “#” 结束，来恢复我们之前的单词列表。</p>
+<p>那么成功对给定单词列表进行编码的最小字符串长度是多少呢？</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= words.length &lt;= 200</code></li>
+<li><code>1 &lt;= words[i].length &lt;= 7</code></li>
+<li>每个单词都是小写字母 。</li>
+</ul>
+<p>方法一：</p>
+<p>可以利用<code>es6</code>中的<code>Set</code>数据结构进行去重</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span>  wordCompressMinLength = <span class="function">(<span class="params">wrolds</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> wroldSet = <span class="keyword">new</span> <span class="built_in">Set</span>(wrolds)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> world <span class="keyword">of</span> wrolds)&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span> ; i &lt; world.length ; i++)&#123;</span><br><span class="line">            wroldSet.delete(world.substring(i))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [...wroldSet].join(<span class="string">'#'</span>).length+<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二： 字典树/前缀树</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(worlds)&#123;</span><br><span class="line">        <span class="keyword">this</span>.root = &#123;&#125;</span><br><span class="line">        <span class="keyword">this</span>.worlds = [...worlds]</span><br><span class="line">        <span class="keyword">this</span>.length = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    insert()&#123;</span><br><span class="line">        <span class="keyword">let</span> root = <span class="keyword">this</span>.root</span><br><span class="line">        <span class="keyword">let</span> tree = root</span><br><span class="line">        <span class="keyword">let</span> length = <span class="keyword">this</span>.length</span><br><span class="line">        <span class="keyword">this</span>.worlds.map(<span class="function"><span class="params">world</span> =&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!world) <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i = world.length - <span class="number">1</span> ; i &gt;=<span class="number">0</span> ; i--)&#123;</span><br><span class="line">                <span class="keyword">let</span> char = world.charAt(i)</span><br><span class="line">                <span class="keyword">if</span>(!tree[char])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(i == <span class="number">1</span>) length++</span><br><span class="line">                    tree[char] = &#123;&#125;</span><br><span class="line">                    length++</span><br><span class="line">                &#125;</span><br><span class="line">                tree = tree[char]</span><br><span class="line">            &#125;</span><br><span class="line">            tree = root</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="built_in">console</span>.log(length<span class="number">-1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>lpopopo</span>
+                    </p>
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/algorithm/"># algorithm</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© lpopopo | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="lpopopo">
+
+
+
+    <meta name="description" content="A boy of no one">
+
+
+
+<title>SQL-Learn | no one</title>
+
+
+
+    <link rel="icon" href="/m7.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">lpopopo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">lpopopo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">SQL-Learn</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">lpopopo</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">三月 2, 2020&nbsp;&nbsp;15:30:37</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SQL/">SQL</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="SQL必知必会"><a href="#SQL必知必会" class="headerlink" title="SQL必知必会"></a><code>SQL</code>必知必会</h1><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 这是一条注释</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a><code>SELECT</code></h2><p><code>SELECT</code>语句用来从一个或多个表中检索信息,检索数据时至少给出两条信息－－想选择什么，以及从什么地方选择．</p>
+<p>:chestnut:</p>
+<h4 id="检索所有列"><a href="#检索所有列" class="headerlink" title="检索所有列"></a>检索所有列</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// user　是数据库中其中的一个table</span><br><span class="line"> //　* （通配符）代表一个表中的所有内容，以下演示将基于这个表.   </span><br><span class="line"> // 每个SQL语句都以;结束,SQL 语句不区分大小写</span><br><span class="line">mysql&gt; SELECT * FROM user;</span><br><span class="line">+<span class="comment">------+------+------+</span></span><br><span class="line">| name | age  | sex  |</span><br><span class="line">+<span class="comment">------+------+------+</span></span><br><span class="line">| ee   |   21 | 男   |</span><br><span class="line">| yy   |   18 | 女   |</span><br><span class="line">| bob  |   18 | 男   |</span><br><span class="line">+<span class="comment">------+------+------+</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="检索单个的列"><a href="#检索单个的列" class="headerlink" title="检索单个的列"></a>检索单个的列</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// <span class="keyword">SELECT</span> prod_name <span class="keyword">FROM</span> Products</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">SElECT</span> age <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| age  |</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">|   21 |</span><br><span class="line">|   18 |</span><br><span class="line">|   18 |</span><br><span class="line">+<span class="comment">------+</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// <span class="keyword">SELECT</span> prod_1  , prod_2 , prod_3 <span class="keyword">FROM</span> Products</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">SELECT</span> <span class="keyword">name</span> , age <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line">+<span class="comment">------+------+</span></span><br><span class="line">| name | age  |</span><br><span class="line">+<span class="comment">------+------+</span></span><br><span class="line">| ee   |   21 |</span><br><span class="line">| yy   |   18 |</span><br><span class="line">| bob  |   18 |</span><br><span class="line">+<span class="comment">------+------+</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="检索不同的值"><a href="#检索不同的值" class="headerlink" title="检索不同的值"></a>检索不同的值</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span>  prod_name <span class="keyword">FROM</span> Products;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> age <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| age  |</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">|   21 |</span><br><span class="line">|   18 |</span><br><span class="line">+<span class="comment">------+</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="限制结果"><a href="#限制结果" class="headerlink" title="限制结果"></a>限制结果</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//不同数据库中的语句是不相同的</span><br><span class="line">// LIMIT 是返回不超过５行数据，OFFSET 是指定从哪开始检索行数</span><br><span class="line">//第一个被检索到的是０行</span><br><span class="line">//  <span class="keyword">SELECT</span> prod_name <span class="keyword">FROM</span> Products  <span class="keyword">LIMIT</span> <span class="built_in">number</span>　<span class="keyword">OFFSET</span> <span class="built_in">number</span>;</span><br><span class="line">mysql&gt; select name from user limit 2;</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| name |</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| ee   |</span><br><span class="line">| yy   |</span><br><span class="line">+<span class="comment">------+</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h3><p>####　单列排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//　<span class="keyword">SELECT</span> prod_name <span class="keyword">FROM</span> Products <span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="多列排序"><a href="#多列排序" class="headerlink" title="多列排序"></a>多列排序</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//只有当个行中prod_1有相同的值时，才会根据prod_2进行相应的排序</span><br><span class="line"><span class="keyword">SELECT</span> prod_1 , prod_2 , prod_3 <span class="keyword">FROM</span> Products <span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_1 , prod_2;</span><br><span class="line">//可以将　ORDER BY 后面的列名改为列名在列中的相对位置</span><br><span class="line"><span class="keyword">SELECT</span> prod_1 , prod_2 ,prod_3 <span class="keyword">FROM</span> Products <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span> ,<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="指定排序方向"><a href="#指定排序方向" class="headerlink" title="指定排序方向"></a>指定排序方向</h4><p>默认是以升序的方式进行排序的，也可以指定为降序．</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_1 , prod_2 <span class="keyword">FROM</span> Products <span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_1 <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以对一列进行多列的要求排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//在这个例子中 DESC 只作用于前面的列名，而prod_2则会以默认的排序方式进行相应的排序</span><br><span class="line"><span class="keyword">SELECT</span> prod_1 , prod_2, prod_3 <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_1 <span class="keyword">DESC</span> ,prod_2;</span><br></pre></td></tr></table></figure>
+
+<p>区别大小写与排序顺序：</p>
+<p>在字典排序顺序中<code>A~a</code>相同．这在大多数的数据库中是默认的行为．也可以需要时进行修改</p>
+<h3 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h3><p>可以指定搜索，所搜到自己想要的行，并非所有的行．</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_1 , prod_2 <span class="keyword">FROM</span> Products <span class="keyword">WHERE</span> prod_name = <span class="keyword">name</span> ;</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT name  from user WHERE age = 18;</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| name |</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| yy   |</span><br><span class="line">| bob  |</span><br><span class="line">+<span class="comment">------+</span></span><br></pre></td></tr></table></figure>
+
+<p><code>SQL</code>过滤与应用过滤：</p>
+<p>也可以将所查出来的的数据进行到应用层进行循环过滤，取出想要的行．其实在优化数据库后可以更加快速有效的对数据进行过滤，而让客户端应用进行过滤不仅影响性能，而且不具备伸缩性，此外还可能增加网络带宽．</p>
+<h4 id="WHERE-子句操作符"><a href="#WHERE-子句操作符" class="headerlink" title="WHERE 子句操作符"></a><code>WHERE</code> 子句操作符</h4><table>
+<thead>
+<tr>
+<th align="center">操作符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">=</td>
+<td align="center">等于</td>
+</tr>
+<tr>
+<td align="center">&lt;&gt;/!=</td>
+<td align="center">不等于</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">小于</td>
+</tr>
+<tr>
+<td align="center">&lt;=</td>
+<td align="center">小于等于</td>
+</tr>
+<tr>
+<td align="center">!&lt;</td>
+<td align="center">不小于</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="center">大于</td>
+</tr>
+<tr>
+<td align="center">&gt;=</td>
+<td align="center">大于等于</td>
+</tr>
+<tr>
+<td align="center">!&gt;</td>
+<td align="center">大于等于</td>
+</tr>
+<tr>
+<td align="center">BETWEEN</td>
+<td align="center">在指定的两个值之间</td>
+</tr>
+<tr>
+<td align="center">IS NULL</td>
+<td align="center">为NULL值</td>
+</tr>
+</tbody></table>
+<p><code>&lt;&gt;/!=</code>在不同的<code>DBMS</code>操作不同，可以查阅相关的文档</p>
+<h4 id="范围检查"><a href="#范围检查" class="headerlink" title="范围检查"></a>范围检查</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name <span class="keyword">FROM</span> Products <span class="keyword">WHERE</span> prod_name <span class="keyword">BETWEEN</span> c1 <span class="keyword">AND</span> c2;</span><br></pre></td></tr></table></figure>
+
+<h4 id="组合WHERE子句"><a href="#组合WHERE子句" class="headerlink" title="组合WHERE子句"></a>组合<code>WHERE</code>子句</h4><ul>
+<li>可以使用<code>AND</code>来给<code>WHERE</code>子句附加条件</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_id , prod_price , prod_name <span class="keyword">FROM</span>  Products <span class="keyword">WHERE</span> vend_id = <span class="string">'DLL01'</span> <span class="keyword">AND</span> prod_price &lt;= <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>OR</code>操作符正好与<code>AND</code>相反　，在许多<code>DBMS在 OR</code>中，在第一个条件得到满足的情况下，就不在计算第二个条件了(在第一个条件下不管第二个条件满不满足，相应的列都将被检索出来)</p>
+</li>
+<li><p>也可以将<code>AND</code>与<code>OR</code>结合使用</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name , prod_price <span class="keyword">FROM</span> Products <span class="keyword">WHERE</span> (vend_id = <span class="string">'DLL01'</span> <span class="keyword">OR</span> vend_id = <span class="string">'BRSO1'</span>)  <span class="keyword">AND</span> prod_price &gt;=<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>IN</code>操作符</li>
+</ul>
+<p>​        <code>IN</code>操作符用来指定条件范围，范围中的每个条件可以进行匹配</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_1 ,prod_2 <span class="keyword">FROM</span> Products <span class="keyword">WHERE</span> prod_1 <span class="keyword">IN</span> (<span class="string">'c1'</span> , <span class="string">'c2 '</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_3;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>NOT</code>操作符</li>
+</ul>
+<p>否定排除数据</p>
+<h3 id="用通配符进行过滤"><a href="#用通配符进行过滤" class="headerlink" title="用通配符进行过滤"></a>用通配符进行过滤</h3><h4 id="like"><a href="#like" class="headerlink" title="like"></a><code>like</code></h4><ul>
+<li><code>%</code>通配符 , <code>%</code>表示任意字符出现任意次数　，　根据<code>DBMS</code>的不同的配置，搜索是可以区分大小写的</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name from user where age like '1%';</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| name |</span><br><span class="line">+<span class="comment">------+</span></span><br><span class="line">| yy   |</span><br><span class="line">| bob  |</span><br><span class="line">+<span class="comment">------+</span></span><br></pre></td></tr></table></figure>
+
+<p>在许多的<code>DBMS</code>都会使用空格来填补字段，例如：</p>
+<p>某列存储时定义某列有50个字符,但是当存入<code>Fish bean bag toy</code>只有17字符，导致就是后面的字符用空格进行相应的填满．当使用<code>where prod_name like &#39;F%y&#39;</code>进行匹配时上述的列子就不会匹配成功.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where prod_name like '%'              //这个sql语句是不会匹配到NULL的行</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>_</code>下划线通配符: 只匹配单个字符</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select name , age from user where  age like "1_";</span><br><span class="line">+<span class="comment">------+------+</span></span><br><span class="line">| name | age  |</span><br><span class="line">+<span class="comment">------+------+</span></span><br><span class="line">| yy   |   18 |</span><br><span class="line">| bob  |   18 |</span><br><span class="line">+<span class="comment">------+------+</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>[]</code>方括号通配符</li>
+</ul>
+<p><code>[]</code>通配符用来指定一个字符集，他必须匹配指定位置的一个字符．</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> , age <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'[yb]%'</span>;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> , age <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'[^yb]%'</span>;  //^/!表示否定匹配</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="计算字段"><a href="#计算字段" class="headerlink" title="计算字段"></a>计算字段</h3><h4 id="拼接字段"><a href="#拼接字段" class="headerlink" title="拼接字段"></a>拼接字段</h4><p>以下三种效果相同</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> vend_name+<span class="string">' ('</span>+vend_country+<span class="string">')'</span> <span class="keyword">from</span> Vendors <span class="keyword">order</span> <span class="keyword">by</span> vend_name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> vend_name || <span class="string">' ('</span> || vend_country || <span class="string">')'</span> <span class="keyword">from</span> Vendors <span class="keyword">order</span> <span class="keyword">by</span> vend_name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">Concat</span>(vend_name , <span class="string">' ('</span> , vend_country , <span class="string">') '</span>) <span class="keyword">from</span> Vendors <span class="keyword">order</span> <span class="keyword">by</span> vend_name</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>RTRIM()</code>去掉字符串右边的空格</li>
+<li><code>TRIM()</code>去掉字符串左右两边的空格</li>
+<li><code>LTRIM</code>去掉左边</li>
+</ul>
+<h5 id="使用别名"><a href="#使用别名" class="headerlink" title="使用别名"></a>使用别名</h5><p>在上面的拼接字段中新的计算列是没有名字的．为了解决此问题，<code>SQL</code>支持别名．</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> vend_name+<span class="string">' ('</span>+vend_country+<span class="string">')'</span>  <span class="keyword">as</span>  vend_title  <span class="keyword">from</span> Vendors <span class="keyword">order</span> <span class="keyword">by</span> vend_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="执行算数表达"><a href="#执行算数表达" class="headerlink" title="执行算数表达"></a>执行算数表达</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from prod;</span><br><span class="line">+<span class="comment">---------+----------+-------+</span></span><br><span class="line">| prod_id | quantity | price |</span><br><span class="line">+<span class="comment">---------+----------+-------+</span></span><br><span class="line">| R       |        5 |    10 |</span><br><span class="line">| B       |        2 |     3 |</span><br><span class="line">| q       |        3 |     4 |</span><br><span class="line">| L       |        1 |    10 |</span><br><span class="line">+<span class="comment">---------+----------+-------+</span></span><br><span class="line">mysql&gt; select prod_id , quantity , price , quantity*price as expanded</span><br><span class="line">    -&gt; from prod;</span><br><span class="line">+<span class="comment">---------+----------+-------+----------+</span></span><br><span class="line">| prod_id | quantity | price | expanded |</span><br><span class="line">+<span class="comment">---------+----------+-------+----------+</span></span><br><span class="line">| R       |        5 |    10 |       50 |</span><br><span class="line">| B       |        2 |     3 |        6 |</span><br><span class="line">| q       |        3 |     4 |       12 |</span><br><span class="line">| L       |        1 |    10 |       10 |</span><br><span class="line">+<span class="comment">---------+----------+-------+----------+</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用函数处理数据"><a href="#使用函数处理数据" class="headerlink" title="使用函数处理数据"></a>使用函数处理数据</h3><p>在不同的数据库函数名称与语法不近相同．</p>
+<h4 id="大多数数据库支持函数"><a href="#大多数数据库支持函数" class="headerlink" title="大多数数据库支持函数"></a>大多数数据库支持函数</h4><ul>
+<li>用于处理文本字符串</li>
+<li>用于在数值上进行算数操作</li>
+<li>用于处理日期和时间值并从这些值中提取特定的成分的日期和时间函数</li>
+<li>返回<code>DBMS</code>正使用的特殊信息的系统函数</li>
+</ul>
+<h4 id="文本处理函数"><a href="#文本处理函数" class="headerlink" title="文本处理函数"></a>文本处理函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">LEFT()</td>
+<td align="center">返回字符串左边的字符</td>
+</tr>
+<tr>
+<td align="center">LENGTH()</td>
+<td align="center">返回字符串的长度</td>
+</tr>
+<tr>
+<td align="center">LOWER()</td>
+<td align="center">将字符串转换为小写</td>
+</tr>
+<tr>
+<td align="center"><code>LTRIM()</code></td>
+<td align="center">去掉字符串左边的空格</td>
+</tr>
+<tr>
+<td align="center">RIGHT()</td>
+<td align="center">返回字符串右边的空格</td>
+</tr>
+<tr>
+<td align="center"><code>RTRIM()</code></td>
+<td align="center">去掉字符串右边的空格</td>
+</tr>
+<tr>
+<td align="center"><code>SOUNDEX()</code></td>
+<td align="center">返回字符串的<code>SOUNDEX</code>值</td>
+</tr>
+<tr>
+<td align="center">UPPER()</td>
+<td align="center">将字符串转换为大写</td>
+</tr>
+</tbody></table>
+<p><code>SOUNDEX</code>是一个将任何文本串转换为描述其语音表示的字母数字模式的算法.</p>
+<h4 id="日期和时间处理函数"><a href="#日期和时间处理函数" class="headerlink" title="日期和时间处理函数"></a>日期和时间处理函数</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> oeder_num <span class="keyword">from</span> Orders <span class="keyword">where</span> <span class="keyword">DATEPART</span>(<span class="string">'yy'</span> , order_date) = <span class="number">2012</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>DATEPART</code>函数有两个参数，一个是返回的成分，和从中返回成分的日期．</p>
+<p><code>to_char()</code>用来提取日期成分，<code>to_number</code>用来将提取的成分转化为数值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  order_name <span class="keyword">FROM</span> Orders <span class="keyword">WHERE</span> to_number(to_char(order_date , <span class="string">'YYYY'</span>)) = <span class="number">2012</span></span><br></pre></td></tr></table></figure>
+
+<p><code>BETWEEN</code>操作符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> order_name <span class="keyword">FROM</span> Orders <span class="keyword">WHERE</span> order_date <span class="keyword">BETWEEN</span> <span class="keyword">to_date</span>(<span class="string">'01-01-2012'</span>)  <span class="keyword">AND</span> <span class="keyword">to_date</span>(<span class="string">"12-31-2012"</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>MySQL</code>中没有<code>DATEPART()</code>函数，但是<code>MySQL</code> 中可以使用<code>YEAR()</code>的函数从日期中提取年份</p>
+<h4 id="数值处理函数"><a href="#数值处理函数" class="headerlink" title="数值处理函数"></a>数值处理函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ABS()</td>
+<td align="center">返回一个数的绝对值</td>
+</tr>
+<tr>
+<td align="center">COS()</td>
+<td align="center">返回一个角度的余弦</td>
+</tr>
+<tr>
+<td align="center">EXP()</td>
+<td align="center">返回一个数的指数值</td>
+</tr>
+<tr>
+<td align="center">PI()</td>
+<td align="center">返回圆周率</td>
+</tr>
+<tr>
+<td align="center">SIN()</td>
+<td align="center">返回一个角度的正弦</td>
+</tr>
+<tr>
+<td align="center">SQRT()</td>
+<td align="center">返回一个数的平方根</td>
+</tr>
+<tr>
+<td align="center">TAN()</td>
+<td align="center">返回一个角度的正切</td>
+</tr>
+</tbody></table>
+<h3 id="汇总数组"><a href="#汇总数组" class="headerlink" title="汇总数组"></a>汇总数组</h3><h4 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h4><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">AVG()</td>
+<td align="center">返回某列的平均值</td>
+</tr>
+<tr>
+<td align="center">COUNT()</td>
+<td align="center">返回某列的行数</td>
+</tr>
+<tr>
+<td align="center">MAX()</td>
+<td align="center">返回某列的最大值(在文本数据时，返回该列排序后的最后一行,忽略<code>NULL</code>)</td>
+</tr>
+<tr>
+<td align="center">MIN()</td>
+<td align="center">返回某列的最小值(同MAX())</td>
+</tr>
+<tr>
+<td align="center">SUM()</td>
+<td align="center">返回某列值之和</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT AVG(price)*COUNT(price)  AS Sum_price FROM prod;</span><br><span class="line">+<span class="comment">-----------+</span></span><br><span class="line">| Sum_price |</span><br><span class="line">+<span class="comment">-----------+</span></span><br><span class="line">|   27.0000 |</span><br><span class="line">+<span class="comment">-----------+</span></span><br></pre></td></tr></table></figure>
+
+<p><code>COUNT()</code>函数对于<code>COUNT(*)</code>进行统计时会统计所有行的数目，即使表列中包含空值(<code>NULL</code>)</p>
+<p>而使用<code>COUNT(column)</code>对特定列中具有值的行进行技术，忽略<code>NULL</code>值</p>
+<h4 id="聚集不同的值"><a href="#聚集不同的值" class="headerlink" title="聚集不同的值"></a>聚集不同的值</h4><p>在执行计算时默认的是将所有列的数据进行计算，但也可以选择列中数据不同的进行计算</p>
+<ul>
+<li><code>ALL</code> 一般默认为<code>ALL</code>代表全部</li>
+<li><code>DISTINCT</code> 只包含不同的值</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM user;</span><br><span class="line">+<span class="comment">------+------+------+</span></span><br><span class="line">| name | age  | sex  |</span><br><span class="line">+<span class="comment">------+------+------+</span></span><br><span class="line">| ee   |   21 | 男   |</span><br><span class="line">| yy   |   18 | 女   |</span><br><span class="line">| bob  |   18 | 男   |</span><br><span class="line">+<span class="comment">------+------+------+</span></span><br><span class="line">3 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">SELECT</span> <span class="keyword">AVG</span>(age) <span class="keyword">AS</span> avg_age <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line">+<span class="comment">---------+</span></span><br><span class="line">| avg_age |</span><br><span class="line">+<span class="comment">---------+</span></span><br><span class="line">| 19.0000 |</span><br><span class="line">+<span class="comment">---------+</span></span><br><span class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">SELECT</span> <span class="keyword">AVG</span>(<span class="keyword">DISTINCT</span> age) <span class="keyword">AS</span> avg_age <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line">+<span class="comment">---------+</span></span><br><span class="line">| avg_age |</span><br><span class="line">+<span class="comment">---------+</span></span><br><span class="line">| 19.5000 |</span><br><span class="line">+<span class="comment">---------+</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="分组数据"><a href="#分组数据" class="headerlink" title="分组数据"></a>分组数据</h3><h4 id="GROUP-BY"><a href="#GROUP-BY" class="headerlink" title="GROUP BY"></a><code>GROUP BY</code></h4><ul>
+<li>子句可以包含任意数量的列，可以对分组进行嵌套，更细致的进行数据分组</li>
+<li>如果子句嵌套分组，数据将在最后指定的分组上进行汇总．也进行说，在建立分组时，指定的所有列都一起计算</li>
+<li>子句中列出的列都必须是检索列或是有效的表达式(不能是聚集函数),如果在<code>SELECT</code>中使用表达式，则必须在<code>GROUP BY</code>中使用表达式</li>
+<li>大多数的<code>SQL</code>实现不允许<code>GROUP BY</code>列带有长度可变的数据类型(如文本或备注型字段)</li>
+<li>除聚集计算语句外，<code>SELECT</code>语句中每一列都必须在<code>GROUP BY</code>中给出</li>
+<li>如果分组列中包含具有<code>NULL</code>值的行，则<code>NULL</code>将作为一个分组返回，如果列中有多行<code>NULL</code>值，他们将被分为一组</li>
+<li>｀GROUP BY｀必须出现在<code>WHERE</code> 之后 <code>ORDER BY</code>之前</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * from prod;</span><br><span class="line">+<span class="comment">---------+----------+-------+</span></span><br><span class="line">| prod_id | quantity | price |</span><br><span class="line">+<span class="comment">---------+----------+-------+</span></span><br><span class="line">| R       |        5 |    10 |</span><br><span class="line">| B       |        2 |     3 |</span><br><span class="line">| q       |        3 |     4 |</span><br><span class="line">| L       |        1 |    10 |</span><br><span class="line">| R       |        2 |     7 |</span><br><span class="line">| R       |        1 |     3 |</span><br><span class="line">| q       |        2 |     2 |</span><br><span class="line">| L       |        2 |     2 |</span><br><span class="line">+<span class="comment">---------+----------+-------+</span></span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT prod_id , COUNT(*) AS sum_prod FROM prod GROUP BY prod_id;</span><br><span class="line">+<span class="comment">---------+----------+</span></span><br><span class="line">| prod_id | sum_prod |</span><br><span class="line">+<span class="comment">---------+----------+</span></span><br><span class="line">| B       |        1 |</span><br><span class="line">| L       |        2 |</span><br><span class="line">| q       |        2 |</span><br><span class="line">| R       |        3 |</span><br><span class="line">+<span class="comment">---------+----------+</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="过滤分组"><a href="#过滤分组" class="headerlink" title="过滤分组"></a>过滤分组</h4><p><code>WHERE</code>与<code>HAVING</code></p>
+<p><code>WHERE</code>过滤行　，<code>HAVING</code>过滤分组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id , COUNT(*) AS sum_prod FROM prod GROUP BY prod_id HAVING COUNT(*) &gt;= 2;</span><br><span class="line">+<span class="comment">---------+----------+</span></span><br><span class="line">| prod_id | sum_prod |</span><br><span class="line">+<span class="comment">---------+----------+</span></span><br><span class="line">| L       |        2 |</span><br><span class="line">| q       |        2 |</span><br><span class="line">| R       |        3 |</span><br><span class="line">+<span class="comment">---------+----------+</span></span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT prod_id , COUNT(*) AS sum_prod FROM prod WHERE price&gt;2 GROUP BY prod_id HAVING COUNT(*) &gt;= 2;</span><br><span class="line">+<span class="comment">---------+----------+</span></span><br><span class="line">| prod_id | sum_prod |</span><br><span class="line">+<span class="comment">---------+----------+</span></span><br><span class="line">| R       |        3 |</span><br><span class="line">+<span class="comment">---------+----------+</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><p>以下两个表，<code>stu_msg</code>用于存放学生的信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM stu_msg;</span><br><span class="line">+<span class="comment">---------+------+------+</span></span><br><span class="line">| id      | name | sex  |</span><br><span class="line">+<span class="comment">---------+------+------+</span></span><br><span class="line">| 2018210 | yy   | w    |</span><br><span class="line">| 2018211 | xx   | m    |</span><br><span class="line">| 2018212 | xy   | m    |</span><br><span class="line">| 2018213 | ww   | w    |</span><br><span class="line">| 2018214 | wyy  | w    |</span><br><span class="line">+<span class="comment">---------+------+------+</span></span><br></pre></td></tr></table></figure>
+
+<p><code>stu_class</code>存放学生的需要上课情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM stu_class;</span><br><span class="line">+------+---------+---------+</span><br><span class="line">| math | chinese | id      |</span><br><span class="line">+------+---------+---------+</span><br><span class="line">|    1 |       1 | 2018210 |</span><br><span class="line">|    1 |       0 | 2018211 |</span><br><span class="line">|    0 |       0 | 2018212 |</span><br><span class="line">|    0 |       1 | 2018213 |</span><br><span class="line">|    1 |       1 | 2018214 |</span><br><span class="line">+------+---------+---------+</span><br></pre></td></tr></table></figure>
+
+<p>当前通过学生的名字，查找他需要上课的情况</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM stu_class WHERE id = (SELECT id FROM stu_msg WHERE name = 'yy');</span><br><span class="line">+<span class="comment">------+---------+---------+</span></span><br><span class="line">| math | chinese | id      |</span><br><span class="line">+<span class="comment">------+---------+---------+</span></span><br><span class="line">|    1 |       1 | 2018210 |</span><br><span class="line">+<span class="comment">------+---------+---------+</span></span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM stu_msg , stu_class WHERE stu_msg.id = stu_class.id;</span><br><span class="line">+<span class="comment">---------+------+------+------+---------+---------+</span></span><br><span class="line">| id      | name | sex  | math | chinese | id      |</span><br><span class="line">+<span class="comment">---------+------+------+------+---------+---------+</span></span><br><span class="line">| 2018210 | yy   | w    |    1 |       1 | 2018210 |</span><br><span class="line">| 2018211 | xx   | m    |    1 |       0 | 2018211 |</span><br><span class="line">| 2018212 | xy   | m    |    0 |       0 | 2018212 |</span><br><span class="line">| 2018213 | ww   | w    |    0 |       1 | 2018213 |</span><br><span class="line">| 2018214 | wyy  | w    |    1 |       1 | 2018214 |</span><br><span class="line">+<span class="comment">---------+------+------+------+---------+---------+</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="连接表"><a href="#连接表" class="headerlink" title="连接表"></a>连接表</h3><h4 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h4><p><code>inner join</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT stu_class.id , math FROM stu_class INNER JOIN stu_msg ON stu_msg.id = stu_class.id;</span><br><span class="line">+<span class="comment">---------+------+</span></span><br><span class="line">| id      | math |</span><br><span class="line">+<span class="comment">---------+------+</span></span><br><span class="line">| 2018210 |    1 |</span><br><span class="line">| 2018211 |    1 |</span><br><span class="line">| 2018212 |    0 |</span><br><span class="line">| 2018213 |    0 |</span><br><span class="line">| 2018214 |    1 |</span><br><span class="line">+<span class="comment">---------+------+</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//使用子查询</span><br><span class="line">mysql&gt; SELECT id , name , sex FROM stu_msg WHERE sex  = ( SELECT sex FROM stu_msg where name = 'yy');</span><br><span class="line">+<span class="comment">---------+------+------+</span></span><br><span class="line">| id      | name | sex  |</span><br><span class="line">+<span class="comment">---------+------+------+</span></span><br><span class="line">| 2018210 | yy   | w    |</span><br><span class="line">| 2018213 | ww   | w    |</span><br><span class="line">| 2018214 | wyy  | w    |</span><br><span class="line"></span><br><span class="line">//使用自连接</span><br><span class="line">mysql&gt; SELECT a.id ,a.sex , a.name FROM stu_msg AS a , stu_msg AS b WHERE a.sex  = b.sex  AND  b.name = 'yy';</span><br><span class="line">+<span class="comment">---------+------+------+</span></span><br><span class="line">| id      | sex  | name |</span><br><span class="line">+<span class="comment">---------+------+------+</span></span><br><span class="line">| 2018210 | w    | yy   |</span><br><span class="line">| 2018213 | w    | ww   |</span><br><span class="line">| 2018214 | w    | wyy  |</span><br><span class="line">+<span class="comment">---------+------+------+</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="自然连接"><a href="#自然连接" class="headerlink" title="自然连接"></a>自然连接</h4><p>自然连接排除相同的列多次出现．一般对一个表使用通配符实现</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT a.* , b.name FROM stu_class AS a , stu_msg AS b WHERE a.id = b.id  AND b.name = "wyy";</span><br><span class="line">+<span class="comment">------+---------+---------+------+</span></span><br><span class="line">| math | chinese | id      | name |</span><br><span class="line">+<span class="comment">------+---------+---------+------+</span></span><br><span class="line">|    1 |       1 | 2018214 | wyy  |</span><br><span class="line">+<span class="comment">------+---------+---------+------+</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h4><p><code>LEFT/RINGHT OUTER JOIN ..... ON</code>与<code>INNER JOIN .... ON</code>语法相似 .<code>left</code>　表示<code>OUTER JOIN</code>左边的表所有行，</p>
+<h3 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h3><ul>
+<li><code>UNION</code> 并操作</li>
+<li><code>INTERSECT</code> 并操作</li>
+<li><code>EXCEPT</code> 差操作</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//会自动去掉重复的行，UNION ALL会返回所有的，即使重复</span><br><span class="line">mysql&gt; SELECT name ,id ,sex FROM stu_msg WHERE name IN('yy' , 'wyy') UNION</span><br><span class="line">    -&gt; SELECT name ,id ,sex FROM stu_msg WHERE sex = 'w';</span><br><span class="line">+<span class="comment">------+---------+------+</span></span><br><span class="line">| name | id      | sex  |</span><br><span class="line">+<span class="comment">------+---------+------+</span></span><br><span class="line">| yy   | 2018210 | w    |</span><br><span class="line">| wyy  | 2018214 | w    |</span><br><span class="line">| ww   | 2018213 | w    |</span><br><span class="line">+<span class="comment">------+---------+------+</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a><code>INSERT</code></h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> stu_msg(<span class="keyword">name</span> , <span class="keyword">id</span> , sex ) <span class="keyword">VALUES</span> (<span class="string">'cc'</span> , <span class="number">2018215</span> , <span class="string">'m'</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="从一个表复制到另一个表"><a href="#从一个表复制到另一个表" class="headerlink" title="从一个表复制到另一个表"></a>从一个表复制到另一个表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//这里并非使用<span class="keyword">INSERT</span> ,而是使用<span class="keyword">SELECT</span> <span class="keyword">INTO</span></span><br><span class="line">//MySQL中支持</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> stu_copy <span class="keyword">AS</span> <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> stu_msg;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>lpopopo</span>
+                    </p>
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/SQL/"># SQL</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/04/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            
+            
+            <a class="next" rel="next" href="/2020/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© lpopopo | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
