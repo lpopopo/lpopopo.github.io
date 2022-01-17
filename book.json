@@ -1,0 +1,36 @@
+{
+    "gitbook": ">=3.2.0",
+    "description": "lpopopo 小黑屋",
+    "language": "zh-hans",
+    "author": "lpopopo",
+    "generator": "site",
+    "title": "lpopopo 小黑屋",
+    "variables": {},
+    "links": {
+    },
+    "structure": {
+        "readme": "README.md"
+    },
+    "plugins": [
+        "sidebar-style",
+        "search",
+        "lunr",
+        "sharing",
+        "fontsettings",
+        "theme-default",
+        "summary"
+    ],
+    "pluginsConfig": {
+        "sidebar-style": {
+            "title": "lpopopo 小黑屋",
+            "author": "lpopopo"
+        }
+    },
+    "styles": {
+        "website": "styles/website.css",
+        "ebook": "styles/ebook.css",
+        "pdf": "styles/pdf.css",
+        "mobi": "styles/mobi.css",
+        "epub": "styles/epub.css"
+    }
+}
