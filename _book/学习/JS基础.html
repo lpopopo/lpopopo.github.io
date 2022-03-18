@@ -276,7 +276,44 @@ a&#x56E0;&#x4E3A;&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570; &#xFF0C;&#x6240;&#x4EE
 &#x6784;&#x9020;&#x51FD;&#x6570;&#x539F;&#x578B;&#x94FE;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7B49;&#x4E8E;&#x81EA;&#x8EAB;
 <img src="../img/&#x539F;&#x578B;&#x94FE;-4.jpg" alt=""></p>
 <h3 id="&#x7528;&#x9014;">&#x7528;&#x9014;</h3>
-<p>&#x5176;&#x5B9E;&#x539F;&#x578B;&#x94FE;&#x7684;&#x8BBE;&#x8BA1; &#xFF0C; &#x56E0;&#x4E3A;&#x5728;js&#x4E2D;&#x6CA1;&#x6709;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x6982;&#x5FF5; &#xFF0C; &#x5B83;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x5B9A;&#x7684;&#x7A0B;&#x5EA6;&#x4E0A;&#x8FDB;&#x884C;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x4E2D;&#x7EE7;&#x627F; &#xFF0C; &#x591A;&#x6001;&#x7684;&#x6982;&#x5FF5;&#x3002;&#x4EE5;&#x53CA;&#x5728;es6&#x4E2D;&#x7684;&#x8BED;&#x6CD5;&#x7CD6;class &#xFF0C; &#x5176;&#x5B9E;&#x5728;&#x5185;&#x90E8;&#x4E5F;&#x662F;&#x57FA;&#x4E8E;js&#x7684;&#x539F;&#x578B;&#x94FE;&#x6765;&#x8FDB;&#x884C;&#x7684;&#x3002;</p>
+<p>&#x5176;&#x5B9E;&#x539F;&#x578B;&#x94FE;&#x7684;&#x8BBE;&#x8BA1; &#xFF0C; &#x56E0;&#x4E3A;&#x5728;js&#x4E2D;&#x6CA1;&#x6709;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x6982;&#x5FF5; &#xFF0C; &#x5B83;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x5B9A;&#x7684;&#x7A0B;&#x5EA6;&#x4E0A;&#x8FDB;&#x884C;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x4E2D;&#x7EE7;&#x627F; &#xFF0C; &#x591A;&#x6001;&#x7684;&#x6982;&#x5FF5;&#x3002;&#x4EE5;&#x53CA;&#x5728;es6&#x4E2D;&#x7684;&#x8BED;&#x6CD5;&#x7CD6;class &#xFF0C; &#x5176;&#x5B9E;&#x5728;&#x5185;&#x90E8;&#x4E5F;&#x662F;&#x57FA;&#x4E8E;js&#x7684;&#x539F;&#x578B;&#x94FE;&#x6765;&#x8FDB;&#x884C;&#x7684;&#x3002;
+&#x901A;&#x8FC7;babel&#x7F16;&#x8BD1;es6&#x4E2D;&#x7684;class&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x67E5;&#x770B;<a href="https://segmentfault.com/a/1190000038331178" target="_blank">babel&#x7F16;&#x8BD1;</a>
+&#x8FD9;&#x662F;es6&#x4E2D;&#x7684;&#x4EE3;&#x7801;</p>
+<pre><code>class People {
+    constructor(){
+        console.log(&apos;constructor&apos;)
+    }
+
+    talk(){
+        console.log(&apos;I am a people&apos;)
+    }
+}
+</code></pre><p>&#x901A;&#x8FC7;babel&#x7F16;&#x8BD1;&#x5F97;&#x5230;&#x7684;&#x4EE3;&#x7801;</p>
+<pre><code>&quot;use strict&quot;;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&quot;Cannot call a class as a function&quot;); } }
+
+function _defineProperties(target, props) { for (var i = 0; i &lt; props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (&quot;value&quot; in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, &quot;prototype&quot;, { writable: false }); return Constructor; }
+
+var People = /*#__PURE__*/function () {
+  function People() {
+    _classCallCheck(this, People);
+
+    console.log(&apos;constructor&apos;);
+  }
+
+  _createClass(People, [{
+    key: &quot;talk&quot;,
+    value: function talk() {
+      console.log(&apos;I am a people&apos;);
+    }
+  }]);
+
+  return People;
+}();
+</code></pre><p>&#x901A;&#x8FC7;Object.defineProperty&#x5728;&#x51FD;&#x6570;People&#x7684;&#x539F;&#x578B;&#x94FE;&#x4E0A;&#x8FDB;&#x884C;&#x5C5E;&#x6027;&#x7684;&#x5B9A;&#x4E49;&#x3002;</p>
 
                                 
                                 </section>
@@ -320,7 +357,7 @@ a&#x56E0;&#x4E3A;&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570; &#xFF0C;&#x6240;&#x4EE
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"JS基础","level":"1.2","depth":1,"next":{"title":"WebRTC","level":"1.3","depth":1,"path":"学习/WebRTC.md","ref":"学习/WebRTC.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["sidebar-style","search","lunr","sharing","fontsettings","theme-default","summary"],"styles":{"website":"styles/website.css","ebook":"styles/ebook.css","pdf":"styles/pdf.css","mobi":"styles/mobi.css","epub":"styles/epub.css"},"pluginsConfig":{"sidebar-style":{"author":"lpopopo","title":"lpopopo 小黑屋"},"search":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"fontsettings":{"family":"sans","size":2,"theme":"white"},"summary":{},"highlight":{},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"lpopopo","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"lpopopo 小黑屋","language":"zh-hans","links":{},"gitbook":">=3.2.0","description":"lpopopo 小黑屋"},"file":{"path":"学习/JS基础.md","mtime":"2022-03-18T07:58:45.480Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-18T08:02:35.644Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"JS基础","level":"1.2","depth":1,"next":{"title":"WebRTC","level":"1.3","depth":1,"path":"学习/WebRTC.md","ref":"学习/WebRTC.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["sidebar-style","search","lunr","sharing","fontsettings","theme-default","summary"],"styles":{"website":"styles/website.css","ebook":"styles/ebook.css","pdf":"styles/pdf.css","mobi":"styles/mobi.css","epub":"styles/epub.css"},"pluginsConfig":{"sidebar-style":{"author":"lpopopo","title":"lpopopo 小黑屋"},"search":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"fontsettings":{"family":"sans","size":2,"theme":"white"},"summary":{},"highlight":{},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"lpopopo","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"lpopopo 小黑屋","language":"zh-hans","links":{},"gitbook":">=3.2.0","description":"lpopopo 小黑屋"},"file":{"path":"学习/JS基础.md","mtime":"2022-03-18T13:51:57.508Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-18T13:52:29.416Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
