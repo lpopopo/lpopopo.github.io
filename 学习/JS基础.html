@@ -1,0 +1,363 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>JS基础 · lpopopo 小黑屋</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="lpopopo">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-sidebar-style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="WebRTC.html" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">学习</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="JS基础.html">
+            
+                <a href="JS基础.html">
+            
+                    
+                    JS基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="WebRTC.html">
+            
+                <a href="WebRTC.html">
+            
+                    
+                    WebRTC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    前端
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="前端/浏览器.html">
+            
+                <a href="前端/浏览器.html">
+            
+                    
+                    浏览器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">论文</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../论文/前期设计.html">
+            
+                <a href="../论文/前期设计.html">
+            
+                    
+                    前期设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">风花雪月</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../风花雪月/夜深.html">
+            
+                <a href="../风花雪月/夜深.html">
+            
+                    
+                    夜深
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../风花雪月/黄昏.html">
+            
+                <a href="../风花雪月/黄昏.html">
+            
+                    
+                    黄昏
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >JS基础</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x539F;&#x578B;&#x94FE;">&#x539F;&#x578B;&#x94FE;</h2>
+<h4 id="proto&#x548C;prototype"><code>__proto__&#x548C;prototype</code></h4>
+<p><strong>proto</strong>&#x6307;&#x5411;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#x7684;&#x539F;&#x578B;&#xFF0C;prototype&#x662F;&#x51FD;&#x6570;&#x624D;&#x5177;&#x6709;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;new &#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x521B;&#x5EFA;&#x51FA;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5176;&#x539F;&#x578B;&#x90FD;&#x6307;&#x5411;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;prototype&#x5C5E;&#x6027;&#x3002;
+&#x4E00;&#x822C;&#x53EA;&#x6709;&#x5185;&#x7F6E;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x624D;&#x62E5;&#x6709;prototype&#x5C5E;&#x6027; &#xFF0C; &#x4EE3;&#x8868;&#x5F53;&#x524D;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x4F5C;&#x7528;&#x57DF; &#xFF0C; &#x5728;new &#x521D;&#x59CB;&#x5316;&#x521B;&#x9020;&#x51FA;&#x6765;&#x7684;&#x65F6;&#x5019; , &#x5982;&#x4E0B;&#x56FE;
+<img src="../img/&#x539F;&#x578B;&#x94FE;-1.PNG" alt="&#x6784;&#x9020;&#x51FD;&#x6570;&#x521D;&#x59CB;&#x5316;"></p>
+<pre><code>b.__proto__ &#x6307;&#x5411;&#x4E86; a.prototype (a&#x7684;&#x539F;&#x578B;&#x94FE;) , &#x800C;&#x4E14;&#x6B64;&#x65F6;&#x7684;b&#x662F;&#x6CA1;&#x6709;prototype&#x5C5E;&#x6027;&#x7684; &#xFF0C; &#x56E0;&#x4E3A;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x5217;&#x3002;
+a&#x56E0;&#x4E3A;&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570; &#xFF0C;&#x6240;&#x4EE5;a.__proto &#x6307;&#x5411;&#x7684;&#x5E94;&#x8BE5;&#x662F;Function&#x7684;&#x539F;&#x578B;&#x94FE;
+</code></pre><p><img src="../img/&#x539F;&#x578B;&#x94FE;-2.PNG.jpg" alt="">
+&#x4F46;&#x662F;&#x5462; Function.prototype&#x5176;&#x5B9E;&#x662F;&#x4E00;&#x4E2A;Object , &#x6240;&#x4EE5; 
+<img src="../img/&#x539F;&#x578B;&#x94FE;-3.jpg" alt="">
+&#x7136;&#x800C;<code>Object.prototype.__proto__ === null</code>
+&#x6784;&#x9020;&#x51FD;&#x6570;&#x539F;&#x578B;&#x94FE;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7B49;&#x4E8E;&#x81EA;&#x8EAB;
+<img src="../img/&#x539F;&#x578B;&#x94FE;-4.jpg" alt=""></p>
+<h3 id="&#x7528;&#x9014;">&#x7528;&#x9014;</h3>
+<p>&#x5176;&#x5B9E;&#x539F;&#x578B;&#x94FE;&#x7684;&#x8BBE;&#x8BA1; &#xFF0C; &#x56E0;&#x4E3A;&#x5728;js&#x4E2D;&#x6CA1;&#x6709;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x6982;&#x5FF5; &#xFF0C; &#x5B83;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x5B9A;&#x7684;&#x7A0B;&#x5EA6;&#x4E0A;&#x8FDB;&#x884C;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x4E2D;&#x7EE7;&#x627F; &#xFF0C; &#x591A;&#x6001;&#x7684;&#x6982;&#x5FF5;&#x3002;&#x4EE5;&#x53CA;&#x5728;es6&#x4E2D;&#x7684;&#x8BED;&#x6CD5;&#x7CD6;class &#xFF0C; &#x5176;&#x5B9E;&#x5728;&#x5185;&#x90E8;&#x4E5F;&#x662F;&#x57FA;&#x4E8E;js&#x7684;&#x539F;&#x578B;&#x94FE;&#x6765;&#x8FDB;&#x884C;&#x7684;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="WebRTC.html" class="navigation navigation-next " aria-label="Next page: WebRTC">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"JS基础","level":"1.2","depth":1,"next":{"title":"WebRTC","level":"1.3","depth":1,"path":"学习/WebRTC.md","ref":"学习/WebRTC.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["sidebar-style","search","lunr","sharing","fontsettings","theme-default","summary"],"styles":{"website":"styles/website.css","ebook":"styles/ebook.css","pdf":"styles/pdf.css","mobi":"styles/mobi.css","epub":"styles/epub.css"},"pluginsConfig":{"sidebar-style":{"author":"lpopopo","title":"lpopopo 小黑屋"},"search":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"fontsettings":{"family":"sans","size":2,"theme":"white"},"summary":{},"highlight":{},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"lpopopo","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"lpopopo 小黑屋","language":"zh-hans","links":{},"gitbook":">=3.2.0","description":"lpopopo 小黑屋"},"file":{"path":"学习/JS基础.md","mtime":"2022-03-18T07:58:45.480Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-18T08:02:35.644Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-sidebar-style/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
